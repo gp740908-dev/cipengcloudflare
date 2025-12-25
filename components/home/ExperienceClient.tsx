@@ -28,7 +28,14 @@ export default function ExperienceClient({ experiences }: ExperienceClientProps)
         offset: ["start end", "end start"]
     })
 
-    const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '20%'])
+    // Enhanced parallax transforms for different layers
+    const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
+    const floatY1 = useTransform(scrollYProgress, [0, 1], [0, -100])
+    const floatY2 = useTransform(scrollYProgress, [0, 1], [0, -150])
+    const floatY3 = useTransform(scrollYProgress, [0, 1], [0, -80])
+    const floatX1 = useTransform(scrollYProgress, [0, 1], [0, 30])
+    const floatX2 = useTransform(scrollYProgress, [0, 1], [0, -20])
+    const scaleProgress = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1, 1.05])
 
     // Take only first 4 for split layout
     const featuredExperiences = experiences.slice(0, 4)
@@ -36,7 +43,7 @@ export default function ExperienceClient({ experiences }: ExperienceClientProps)
 
     return (
         <section ref={containerRef} className="relative min-h-screen bg-olive-900 overflow-hidden">
-            {/* Parallax Background */}
+            {/* Enhanced Parallax Background */}
             <motion.div
                 style={{ y: backgroundY }}
                 className="absolute inset-0 pointer-events-none"
@@ -44,6 +51,45 @@ export default function ExperienceClient({ experiences }: ExperienceClientProps)
                 <div className="absolute inset-0 bg-gradient-to-br from-olive-900 via-olive-800 to-olive-900" />
                 <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-black/20 to-transparent" />
             </motion.div>
+
+            {/* Floating Parallax Elements - Different Speeds for Depth */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                {/* Large circle - slow movement */}
+                <motion.div
+                    style={{ y: floatY1 }}
+                    className="absolute top-20 left-20 w-64 h-64 border border-olive-700/20 rounded-full hidden lg:block"
+                />
+
+                {/* Medium circle - medium movement */}
+                <motion.div
+                    style={{ y: floatY2, x: floatX1 }}
+                    className="absolute bottom-20 left-40 w-32 h-32 border border-olive-600/20 rounded-full hidden lg:block"
+                />
+
+                {/* Small glowing dots - fast movement */}
+                <motion.div
+                    style={{ y: floatY3, x: floatX2 }}
+                    className="absolute top-1/3 left-10 w-3 h-3 bg-olive-400/20 rounded-full blur-sm hidden lg:block"
+                />
+                <motion.div
+                    style={{ y: floatY2 }}
+                    className="absolute top-1/4 right-1/3 w-2 h-2 bg-olive-300/30 rounded-full hidden lg:block"
+                />
+                <motion.div
+                    style={{ y: floatY1, x: floatX1 }}
+                    className="absolute bottom-1/3 left-1/4 w-4 h-4 bg-olive-500/10 rounded-full blur-md hidden lg:block"
+                />
+
+                {/* Gradient orbs with deep parallax */}
+                <motion.div
+                    style={{ y: floatY2, scale: scaleProgress }}
+                    className="absolute -top-20 -right-20 w-96 h-96 bg-olive-700/10 rounded-full blur-3xl"
+                />
+                <motion.div
+                    style={{ y: floatY3 }}
+                    className="absolute -bottom-40 -left-20 w-80 h-80 bg-olive-600/10 rounded-full blur-3xl"
+                />
+            </div>
 
             {/* Split Screen Layout */}
             <div className="relative z-10 min-h-screen flex flex-col lg:flex-row">
@@ -81,8 +127,8 @@ export default function ExperienceClient({ experiences }: ExperienceClientProps)
                                     <button
                                         onClick={() => setActiveIndex(index)}
                                         className={`w-full text-left group flex items-center justify-between p-4 border-l-2 transition-all duration-300 ${activeIndex === index
-                                                ? 'border-olive-400 bg-white/5'
-                                                : 'border-white/10 hover:border-white/30 hover:bg-white/5'
+                                            ? 'border-olive-400 bg-white/5'
+                                            : 'border-white/10 hover:border-white/30 hover:bg-white/5'
                                             }`}
                                     >
                                         <div className="flex items-center gap-4">
@@ -104,8 +150,8 @@ export default function ExperienceClient({ experiences }: ExperienceClientProps)
                                         <ArrowRight
                                             size={20}
                                             className={`transition-all duration-300 ${activeIndex === index
-                                                    ? 'text-olive-400 translate-x-0'
-                                                    : 'text-white/20 -translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0'
+                                                ? 'text-olive-400 translate-x-0'
+                                                : 'text-white/20 -translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0'
                                                 }`}
                                         />
                                     </button>
@@ -130,7 +176,7 @@ export default function ExperienceClient({ experiences }: ExperienceClientProps)
                     </div>
                 </div>
 
-                {/* Right Side - Image */}
+                {/* Right Side - Image with Parallax */}
                 <div className="w-full lg:w-1/2 relative min-h-[60vh] lg:min-h-screen">
                     <AnimatePresence mode="wait">
                         <motion.div
@@ -185,18 +231,15 @@ export default function ExperienceClient({ experiences }: ExperienceClientProps)
                                 key={index}
                                 onClick={() => setActiveIndex(index)}
                                 className={`w-2 h-2 rounded-full transition-all duration-300 ${activeIndex === index
-                                        ? 'bg-olive-400 scale-125'
-                                        : 'bg-white/30 hover:bg-white/50'
+                                    ? 'bg-olive-400 scale-125'
+                                    : 'bg-white/30 hover:bg-white/50'
                                     }`}
                             />
                         ))}
                     </div>
                 </div>
             </div>
-
-            {/* Decorative Elements */}
-            <div className="absolute top-20 left-20 w-64 h-64 border border-olive-700/20 rounded-full pointer-events-none hidden lg:block" />
-            <div className="absolute bottom-20 left-40 w-32 h-32 border border-olive-600/20 rounded-full pointer-events-none hidden lg:block" />
         </section>
     )
 }
+

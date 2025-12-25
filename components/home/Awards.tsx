@@ -51,6 +51,7 @@ const awards = [
 export default function Awards() {
     const containerRef = useRef<HTMLElement>(null)
     const [isInView, setIsInView] = useState(false)
+    const [parallaxOffset, setParallaxOffset] = useState(0)
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -65,12 +66,45 @@ export default function Awards() {
         return () => observer.disconnect()
     }, [])
 
+    // Parallax scroll effect
+    useEffect(() => {
+        const handleScroll = () => {
+            if (containerRef.current) {
+                const rect = containerRef.current.getBoundingClientRect()
+                const windowHeight = window.innerHeight
+                // Calculate parallax based on element position
+                if (rect.top < windowHeight && rect.bottom > 0) {
+                    const scrollProgress = (windowHeight - rect.top) / (windowHeight + rect.height)
+                    setParallaxOffset(scrollProgress * 100)
+                }
+            }
+        }
+        window.addEventListener('scroll', handleScroll, { passive: true })
+        handleScroll() // Initial calculation
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
+
     return (
         <section ref={containerRef} className="relative py-24 md:py-32 bg-olive-900 overflow-hidden">
-            {/* Decorative Elements */}
+            {/* Parallax Decorative Elements */}
             <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-0 left-1/4 w-96 h-96 bg-olive-800/30 rounded-full blur-3xl" />
-                <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-olive-700/20 rounded-full blur-3xl" />
+                <div
+                    className="absolute top-0 left-1/4 w-96 h-96 bg-olive-800/30 rounded-full blur-3xl transition-transform duration-100"
+                    style={{ transform: `translateY(${parallaxOffset * 0.3}px)` }}
+                />
+                <div
+                    className="absolute bottom-0 right-1/4 w-80 h-80 bg-olive-700/20 rounded-full blur-3xl transition-transform duration-100"
+                    style={{ transform: `translateY(${-parallaxOffset * 0.2}px)` }}
+                />
+                {/* Additional floating elements */}
+                <div
+                    className="absolute top-1/3 right-10 w-4 h-4 bg-amber-400/20 rounded-full"
+                    style={{ transform: `translateY(${parallaxOffset * 0.5}px)` }}
+                />
+                <div
+                    className="absolute bottom-1/4 left-20 w-6 h-6 bg-amber-400/10 rounded-full"
+                    style={{ transform: `translateY(${-parallaxOffset * 0.4}px)` }}
+                />
             </div>
 
             {/* Gold Accent Line */}

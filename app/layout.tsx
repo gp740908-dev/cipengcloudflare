@@ -4,6 +4,7 @@ import "./globals.css";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
 import Providers from "@/components/Providers";
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
+import LuxuryLoader from "@/components/LuxuryLoader";
 import { createMetadata, getOrganizationSchema, getLocalBusinessSchema } from '@/lib/seo'
 
 // Optimized font loading with next/font
@@ -91,6 +92,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased bg-cream text-primary">
         <Providers>
+          <LuxuryLoader />
           <ServiceWorkerRegister />
           <AnalyticsTracker />
           {children}
