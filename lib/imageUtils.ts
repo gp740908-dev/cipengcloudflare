@@ -85,3 +85,58 @@ export function formatFileSize(bytes: number): string {
     const i = Math.floor(Math.log(bytes) / Math.log(k))
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
 }
+
+/**
+ * Generate optimized image URL for external images (Unsplash)
+ * Returns WebP format with specified dimensions and quality
+ */
+export function getOptimizedImageUrl(
+    src: string,
+    options: {
+        width?: number
+        quality?: number
+        blur?: number
+        format?: 'webp' | 'avif'
+    } = {}
+): string {
+    const { width = 800, quality = 75, blur = 0, format = 'webp' } = options
+
+    // For Unsplash images, add optimization params
+    if (src.includes('unsplash.com')) {
+        try {
+            const url = new URL(src)
+            url.searchParams.set('fm', format)
+            url.searchParams.set('q', String(quality))
+            url.searchParams.set('w', String(width))
+            url.searchParams.set('auto', 'format,compress')
+            url.searchParams.set('fit', 'crop')
+            if (blur > 0) {
+                url.searchParams.set('blur', String(blur))
+            }
+            return url.toString()
+        } catch {
+            return src
+        }
+    }
+
+    return src
+}
+
+/**
+ * Get blur placeholder URL for an image
+ */
+export function getBlurPlaceholder(src: string): string {
+    return getOptimizedImageUrl(src, { width: 20, quality: 10, blur: 20 })
+}
+
+/**
+ * Image size presets for common use cases
+ */
+export const imageSizes = {
+    thumbnail: { width: 200, quality: 60 },
+    card: { width: 400, quality: 70 },
+    medium: { width: 800, quality: 75 },
+    large: { width: 1200, quality: 80 },
+    hero: { width: 1920, quality: 85 },
+} as const
+

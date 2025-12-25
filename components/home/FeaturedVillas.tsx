@@ -17,7 +17,7 @@ const fallbackVillas = [
         bedrooms: 3,
         bathrooms: 3,
         max_guests: 6,
-        images: ['https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80'],
+        images: ['https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&fm=webp&q=70&auto=format,compress&fit=crop'],
         location: 'Ubud, Bali'
     },
     {
@@ -27,7 +27,7 @@ const fallbackVillas = [
         bedrooms: 4,
         bathrooms: 4,
         max_guests: 8,
-        images: ['https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80'],
+        images: ['https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&fm=webp&q=70&auto=format,compress&fit=crop'],
         location: 'Ubud, Bali'
     },
     {
@@ -37,7 +37,7 @@ const fallbackVillas = [
         bedrooms: 2,
         bathrooms: 2,
         max_guests: 4,
-        images: ['https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=800&q=80'],
+        images: ['https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=600&fm=webp&q=70&auto=format,compress&fit=crop'],
         location: 'Ubud, Bali'
     },
     {
@@ -47,7 +47,7 @@ const fallbackVillas = [
         bedrooms: 5,
         bathrooms: 5,
         max_guests: 10,
-        images: ['https://images.unsplash.com/photo-1540541338287-41700207dee6?w=800&q=80'],
+        images: ['https://images.unsplash.com/photo-1540541338287-41700207dee6?w=600&fm=webp&q=70&auto=format,compress&fit=crop'],
         location: 'Ubud, Bali'
     },
     {
@@ -57,7 +57,7 @@ const fallbackVillas = [
         bedrooms: 3,
         bathrooms: 3,
         max_guests: 6,
-        images: ['https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80'],
+        images: ['https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&fm=webp&q=70&auto=format,compress&fit=crop'],
         location: 'Ubud, Bali'
     },
 ]

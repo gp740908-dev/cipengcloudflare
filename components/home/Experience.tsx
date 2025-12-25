@@ -19,42 +19,42 @@ export default async function Experience() {
             id: '1',
             title: 'Sunrise Yoga',
             description: 'Start your day with rejuvenating yoga sessions overlooking rice terraces',
-            image: 'https://images.unsplash.com/photo-1545389336-cf090694435e?w=800',
+            image: 'https://images.unsplash.com/photo-1545389336-cf090694435e?w=400&fm=webp&q=70&auto=format,compress&fit=crop',
             category: 'wellness'
         },
         {
             id: '2',
             title: 'Balinese Spa',
             description: 'Traditional healing treatments using ancient techniques and local herbs',
-            image: 'https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=800',
+            image: 'https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=400&fm=webp&q=70&auto=format,compress&fit=crop',
             category: 'relaxation'
         },
         {
             id: '3',
             title: 'Rice Field Trek',
             description: 'Guided walks through emerald terraces and hidden waterfalls',
-            image: 'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=800',
+            image: 'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=400&fm=webp&q=70&auto=format,compress&fit=crop',
             category: 'adventure'
         },
         {
             id: '4',
             title: 'Cooking Class',
             description: 'Master authentic Balinese recipes with local culinary experts',
-            image: 'https://images.unsplash.com/photo-1507048331197-7d4ac70811cf?w=800',
+            image: 'https://images.unsplash.com/photo-1507048331197-7d4ac70811cf?w=400&fm=webp&q=70&auto=format,compress&fit=crop',
             category: 'culture'
         },
         {
             id: '5',
             title: 'Temple Ceremony',
             description: 'Experience sacred rituals and ancient spiritual traditions',
-            image: 'https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=800',
+            image: 'https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=400&fm=webp&q=70&auto=format,compress&fit=crop',
             category: 'spiritual'
         },
         {
             id: '6',
             title: 'Art Workshop',
             description: 'Learn traditional Balinese painting and craft techniques',
-            image: 'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=800',
+            image: 'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=400&fm=webp&q=70&auto=format,compress&fit=crop',
             category: 'creative'
         },
     ]

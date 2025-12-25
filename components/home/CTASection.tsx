@@ -55,7 +55,7 @@ export default function CTASection() {
                 style={{ transform: `translateY(${parallaxY}px) scale(1.1)` }}
             >
                 <OptimizedImage
-                    src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1920"
+                    src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200&fm=webp&q=75&auto=format,compress&fit=crop"
                     alt="Bali Villa View"
                     fill
                     className="object-cover"

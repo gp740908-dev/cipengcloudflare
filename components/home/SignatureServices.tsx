@@ -20,42 +20,42 @@ const services = [
         title: 'Private Airport Transfer',
         description: 'Luxury vehicle pickup with welcome amenities',
         tag: 'Complimentary',
-        image: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&q=80'
+        image: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=400&fm=webp&q=70&auto=format,compress&fit=crop'
     },
     {
         icon: UtensilsCrossed,
         title: 'Private Chef Service',
         description: 'Michelin-trained chefs creating culinary masterpieces',
         tag: 'On Request',
-        image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600&q=80'
+        image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=400&fm=webp&q=70&auto=format,compress&fit=crop'
     },
     {
         icon: Sparkles,
         title: 'In-Villa Spa',
         description: 'Traditional Balinese treatments in complete privacy',
         tag: 'Exclusive',
-        image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80'
+        image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=400&fm=webp&q=70&auto=format,compress&fit=crop'
     },
     {
         icon: Camera,
         title: 'Professional Photography',
         description: 'Capture your moments with our resident photographer',
         tag: 'Premium',
-        image: 'https://images.unsplash.com/photo-1520390138845-fd2d229dd553?w=600&q=80'
+        image: 'https://images.unsplash.com/photo-1520390138845-fd2d229dd553?w=400&fm=webp&q=70&auto=format,compress&fit=crop'
     },
     {
         icon: Plane,
         title: 'Island Hopping',
         description: 'Private tours to Nusa Penida, Gili & beyond',
         tag: 'Adventure',
-        image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80'
+        image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&fm=webp&q=70&auto=format,compress&fit=crop'
     },
     {
         icon: Wine,
         title: 'Sunset Dining',
         description: 'Romantic private dining with panoramic views',
         tag: 'Signature',
-        image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80'
+        image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&fm=webp&q=70&auto=format,compress&fit=crop'
     },
 ]
 

@@ -1,11 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    // Image Optimization
+    // Image Optimization - Enhanced for speed
     images: {
-        formats: ['image/webp', 'image/avif'],
-        deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
-        imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-        minimumCacheTTL: 60,
+        // AVIF first (smaller), then WebP
+        formats: ['image/avif', 'image/webp'],
+        // Optimized device sizes for responsive images
+        deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+        imageSizes: [16, 32, 48, 64, 96, 128, 256],
+        // Extended cache TTL for faster subsequent loads (31 days)
+        minimumCacheTTL: 2678400,
+        // Allow SVG for blur placeholders
+        dangerouslyAllowSVG: true,
+        contentDispositionType: 'attachment',
+        contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
         remotePatterns: [
             {
                 protocol: 'https',
