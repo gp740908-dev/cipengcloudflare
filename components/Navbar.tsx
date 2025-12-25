@@ -125,10 +125,12 @@ export default function Navbar() {
                                     <Image
                                         src="/images/logo.png"
                                         alt="StayinUBUD"
-                                        width={220}
-                                        height={120}
+                                        width={440}
+                                        height={240}
                                         className="h-20 md:h-24 w-auto object-contain"
                                         priority
+                                        quality={100}
+                                        unoptimized
                                     />
                                 </motion.div>
 
@@ -238,9 +240,11 @@ export default function Navbar() {
                                     <Image
                                         src="/images/logo.png"
                                         alt="StayinUBUD"
-                                        width={140}
-                                        height={80}
+                                        width={280}
+                                        height={160}
                                         className="h-16 w-auto object-contain"
+                                        quality={100}
+                                        unoptimized
                                     />
                                     <button
                                         onClick={() => setIsMobileMenuOpen(false)}
