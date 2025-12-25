@@ -1,0 +1,11 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Block admin panel
+User-agent: *
+Disallow: /admin/
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://www.stayinubud.com/sitemap.xml
