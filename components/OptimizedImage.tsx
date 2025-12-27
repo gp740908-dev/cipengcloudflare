@@ -56,21 +56,19 @@ export default function OptimizedImage({
     // Generate optimized sizes if not provided
     const optimizedSizes = sizes || '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
 
-    // Append WebP format hint to URL for external images
+    // Optimize URL through ImageKit CDN for external images
     const optimizeUrl = (src: string | any): string | any => {
         if (typeof src !== 'string') return src
 
-        // For Unsplash images, add WebP format and quality params
-        if (src.includes('unsplash.com')) {
-            const url = new URL(src)
-            url.searchParams.set('fm', 'webp')
-            url.searchParams.set('q', String(quality))
-            url.searchParams.set('auto', 'format')
-            return url.toString()
-        }
+        // Skip relative paths and data URLs
+        if (src.startsWith('/') || src.startsWith('data:')) return src
 
-        // For Supabase storage, images are already optimized
-        return src
+        // Skip if already an ImageKit URL
+        if (src.includes('imagekit.io')) return src
+
+        // For all external images (Supabase, Unsplash, etc), proxy through ImageKit
+        const IMAGEKIT_URL = process.env.NEXT_PUBLIC_IMAGEKIT_URL || 'https://ik.imagekit.io/sfu6px4tc'
+        return `${IMAGEKIT_URL}/tr:w-1200,q-${quality},f-auto/${src}`
     }
 
     const optimizedSrc = optimizeUrl(props.src)

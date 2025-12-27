@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight, Calendar, Users, Search, ArrowRight, Pause, Play, ChevronDown } from 'lucide-react'
+import { getOptimizedImageUrl, imagePresets } from '@/lib/imagekit'
 
 interface FeaturedVilla {
     id: string
@@ -23,7 +24,7 @@ interface HeroClientProps {
 }
 
 // Default olive colored blur placeholder
-const defaultBlurDataURL = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI4MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzRhNWQyMyIvPjwvc3ZnPg=='
+const defaultBlurDataURL = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI4MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzFhMWExYSIvPjwvc3ZnPg=='
 
 export default function HeroClient({ villas, blurDataURL = defaultBlurDataURL }: HeroClientProps) {
     const [current, setCurrent] = useState(0)
@@ -107,7 +108,7 @@ export default function HeroClient({ villas, blurDataURL = defaultBlurDataURL }:
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.6, ease: 'easeOut' }}
                     className="absolute inset-0"
                 >
                     <motion.div
@@ -120,15 +121,16 @@ export default function HeroClient({ villas, blurDataURL = defaultBlurDataURL }:
                             className="absolute inset-0"
                         >
                             <Image
-                                src={currentVilla.image}
+                                src={getOptimizedImageUrl(currentVilla.image, imagePresets.hero)}
                                 alt={currentVilla.name}
                                 fill
                                 priority
                                 className="object-cover"
                                 sizes="100vw"
-                                quality={70}
+                                quality={75}
                                 placeholder="blur"
                                 blurDataURL={blurDataURL}
+                                unoptimized
                             />
                         </motion.div>
                     </motion.div>
