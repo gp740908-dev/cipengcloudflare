@@ -4,19 +4,13 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import {
-    Home,
-    Calendar,
-    TrendingUp,
-    LogOut,
     ArrowLeft,
     Save,
     Loader2,
-    FileText,
-    Users,
-    Eye
 } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { useToast } from '@/components/ui/Toast'
+import AdminLayout from '@/components/admin/AdminLayout'
 
 export default function NewBlogPostPage() {
     const router = useRouter()
@@ -84,67 +78,29 @@ export default function NewBlogPostPage() {
         }
     }
 
-    const menuItems = [
-        { href: '/admin/dashboard', icon: TrendingUp, label: 'Dashboard' },
-        { href: '/admin/villas', icon: Home, label: 'Kelola Villa' },
-        { href: '/admin/bookings', icon: Calendar, label: 'Kelola Booking' },
-        { href: '/admin/blog', icon: FileText, label: 'Kelola Blog', active: true },
-        { href: '/admin/users', icon: Users, label: 'Admin Users' },
-    ]
-
     return (
-        <div className="min-h-screen bg-gray-50 flex">
-            {/* Sidebar */}
-            <aside className="w-64 bg-olive text-cream p-6 flex flex-col">
-                <div className="mb-8">
-                    <h1 className="font-knewave text-3xl text-sage">StayinUBUD</h1>
-                    <p className="text-sm text-cream/70">Admin Panel</p>
-                </div>
-
-                <nav className="flex-1 space-y-2">
-                    {menuItems.map((item) => (
-                        <Link
-                            key={item.href}
-                            href={item.href}
-                            className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${item.active ? 'bg-sage text-white' : 'hover:bg-sage/20'
-                                }`}
-                        >
-                            <item.icon size={20} />
-                            <span>{item.label}</span>
-                        </Link>
-                    ))}
-                </nav>
-
-                <button
-                    onClick={async () => {
-                        await supabase.auth.signOut()
-                        router.push('/admin/login')
-                    }}
-                    className="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-red-500/20 text-red-300 hover:text-red-200 transition-colors"
-                >
-                    <LogOut size={20} />
-                    <span>Logout</span>
-                </button>
-            </aside>
-
-            {/* Main Content */}
-            <main className="flex-1 p-8">
+        <AdminLayout>
+            <main className="p-4 sm:p-6 lg:p-8">
                 <div className="max-w-4xl mx-auto">
-                    <div className="flex items-center space-x-4 mb-8">
+                    {/* Header */}
+                    <div className="flex items-center gap-4 mb-6 sm:mb-8">
                         <Link
                             href="/admin/blog"
-                            className="p-2 hover:bg-gray-200 rounded-lg transition-colors"
+                            className="p-2 hover:bg-gray-200 transition-colors"
                         >
-                            <ArrowLeft size={24} className="text-olive" />
+                            <ArrowLeft size={24} className="text-gray-600" />
                         </Link>
-                        <h2 className="text-3xl font-bold text-olive">Tulis Artikel Baru</h2>
+                        <div>
+                            <h2 className="text-xl sm:text-2xl font-display text-gray-900">Tulis Artikel Baru</h2>
+                            <p className="text-gray-500 text-sm">Buat artikel untuk blog StayinUBUD</p>
+                        </div>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-lg p-8">
+                    <form onSubmit={handleSubmit} className="bg-white border border-gray-100 p-4 sm:p-6 lg:p-8">
                         <div className="space-y-6">
                             {/* Title */}
                             <div>
-                                <label className="block text-sm font-medium text-olive mb-2">
+                                <label className="block text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
                                     Judul Artikel *
                                 </label>
                                 <input
@@ -153,13 +109,13 @@ export default function NewBlogPostPage() {
                                     onChange={(e) => handleTitleChange(e.target.value)}
                                     placeholder="Judul artikel yang menarik"
                                     required
-                                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-sage focus:ring-2 focus:ring-sage/20 text-lg"
+                                    className="w-full px-4 py-3 border border-gray-200 focus:border-olive-600 outline-none transition-colors text-lg"
                                 />
                             </div>
 
                             {/* Slug */}
                             <div>
-                                <label className="block text-sm font-medium text-olive mb-2">
+                                <label className="block text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
                                     Slug (URL)
                                 </label>
                                 <input
@@ -167,13 +123,13 @@ export default function NewBlogPostPage() {
                                     value={formData.slug}
                                     onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
                                     placeholder="judul-artikel-yang-menarik"
-                                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-sage focus:ring-2 focus:ring-sage/20 font-mono text-sm"
+                                    className="w-full px-4 py-3 border border-gray-200 focus:border-olive-600 outline-none transition-colors font-mono text-sm"
                                 />
                             </div>
 
                             {/* Cover Image */}
                             <div>
-                                <label className="block text-sm font-medium text-olive mb-2">
+                                <label className="block text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
                                     URL Gambar Cover
                                 </label>
                                 <input
@@ -181,13 +137,13 @@ export default function NewBlogPostPage() {
                                     value={formData.cover_image}
                                     onChange={(e) => setFormData({ ...formData, cover_image: e.target.value })}
                                     placeholder="https://images.unsplash.com/..."
-                                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-sage focus:ring-2 focus:ring-sage/20"
+                                    className="w-full px-4 py-3 border border-gray-200 focus:border-olive-600 outline-none transition-colors"
                                 />
                             </div>
 
                             {/* Excerpt */}
                             <div>
-                                <label className="block text-sm font-medium text-olive mb-2">
+                                <label className="block text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
                                     Ringkasan
                                 </label>
                                 <textarea
@@ -195,74 +151,74 @@ export default function NewBlogPostPage() {
                                     onChange={(e) => setFormData({ ...formData, excerpt: e.target.value })}
                                     placeholder="Ringkasan singkat artikel (tampil di listing)"
                                     rows={2}
-                                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-sage focus:ring-2 focus:ring-sage/20 resize-none"
+                                    className="w-full px-4 py-3 border border-gray-200 focus:border-olive-600 outline-none transition-colors resize-none"
                                 />
                             </div>
 
                             {/* Content */}
                             <div>
-                                <label className="block text-sm font-medium text-olive mb-2">
+                                <label className="block text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
                                     Konten Artikel * (Markdown didukung)
                                 </label>
                                 <textarea
                                     value={formData.content}
                                     onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                                    placeholder="## Subjudul\n\nTulis konten artikel di sini...\n\n### Tips\n- Point 1\n- Point 2"
+                                    placeholder="## Subjudul&#10;&#10;Tulis konten artikel di sini...&#10;&#10;### Tips&#10;- Point 1&#10;- Point 2"
                                     rows={15}
                                     required
-                                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-sage focus:ring-2 focus:ring-sage/20 resize-none font-mono text-sm"
+                                    className="w-full px-4 py-3 border border-gray-200 focus:border-olive-600 outline-none transition-colors resize-none font-mono text-sm"
                                 />
                             </div>
 
                             {/* Author */}
                             <div>
-                                <label className="block text-sm font-medium text-olive mb-2">
+                                <label className="block text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
                                     Penulis
                                 </label>
                                 <input
                                     type="text"
                                     value={formData.author}
                                     onChange={(e) => setFormData({ ...formData, author: e.target.value })}
-                                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-sage focus:ring-2 focus:ring-sage/20"
+                                    className="w-full px-4 py-3 border border-gray-200 focus:border-olive-600 outline-none transition-colors"
                                 />
                             </div>
 
                             {/* Published */}
-                            <div className="flex items-center space-x-3">
+                            <div className="flex items-center gap-3">
                                 <input
                                     type="checkbox"
                                     id="published"
                                     checked={formData.published}
                                     onChange={(e) => setFormData({ ...formData, published: e.target.checked })}
-                                    className="w-5 h-5 rounded border-gray-300 text-sage focus:ring-sage"
+                                    className="w-5 h-5 border-gray-300 text-olive-600 focus:ring-olive-600"
                                 />
-                                <label htmlFor="published" className="text-olive font-medium">
+                                <label htmlFor="published" className="text-gray-700 font-medium">
                                     Publikasikan sekarang
                                 </label>
                             </div>
                         </div>
 
                         {/* Submit */}
-                        <div className="mt-8 flex justify-end space-x-4">
+                        <div className="mt-8 flex flex-col sm:flex-row justify-end gap-3">
                             <Link
                                 href="/admin/blog"
-                                className="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                                className="px-6 py-3 border border-gray-200 text-gray-600 hover:bg-gray-50 transition-colors text-center"
                             >
                                 Batal
                             </Link>
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="flex items-center space-x-2 px-6 py-3 bg-sage text-white rounded-lg hover:bg-sage-dark transition-colors disabled:opacity-50"
+                                className="flex items-center justify-center gap-2 px-6 py-3 bg-olive-600 text-white hover:bg-olive-900 transition-colors disabled:opacity-50"
                             >
                                 {loading ? (
                                     <>
-                                        <Loader2 size={20} className="animate-spin" />
+                                        <Loader2 size={18} className="animate-spin" />
                                         <span>Menyimpan...</span>
                                     </>
                                 ) : (
                                     <>
-                                        <Save size={20} />
+                                        <Save size={18} />
                                         <span>Simpan Artikel</span>
                                     </>
                                 )}
@@ -271,6 +227,6 @@ export default function NewBlogPostPage() {
                     </form>
                 </div>
             </main>
-        </div>
+        </AdminLayout>
     )
 }

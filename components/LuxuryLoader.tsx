@@ -5,86 +5,113 @@ import { useState, useEffect } from 'react'
 export default function LuxuryLoader() {
     const [isLoading, setIsLoading] = useState(true)
     const [fadeOut, setFadeOut] = useState(false)
+    const [progress, setProgress] = useState(0)
 
     useEffect(() => {
+        // Simulate loading progress
+        const progressInterval = setInterval(() => {
+            setProgress(prev => {
+                if (prev >= 100) {
+                    clearInterval(progressInterval)
+                    return 100
+                }
+                return prev + Math.random() * 15
+            })
+        }, 200)
+
         // Minimum display time for luxury feel
-        const minDisplayTime = 2000
+        const minDisplayTime = 1800
 
         const timer = setTimeout(() => {
-            setFadeOut(true)
-            // Remove from DOM after fade animation
+            setProgress(100)
             setTimeout(() => {
-                setIsLoading(false)
-            }, 800)
+                setFadeOut(true)
+                // Remove from DOM after fade animation
+                setTimeout(() => {
+                    setIsLoading(false)
+                }, 600)
+            }, 200)
         }, minDisplayTime)
 
-        return () => clearTimeout(timer)
+        return () => {
+            clearTimeout(timer)
+            clearInterval(progressInterval)
+        }
     }, [])
 
     if (!isLoading) return null
 
     return (
         <div
-            className={`fixed inset-0 z-[9999] flex items-center justify-center bg-olive-900 transition-opacity duration-800 ${fadeOut ? 'opacity-0 pointer-events-none' : 'opacity-100'
+            className={`fixed inset-0 z-[9999] flex items-center justify-center bg-[#fafafa] transition-all duration-600 ${fadeOut ? 'opacity-0 pointer-events-none' : 'opacity-100'
                 }`}
         >
-            {/* Background Pattern */}
-            <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute top-1/4 -left-20 w-96 h-96 rounded-full bg-olive-800/30 blur-3xl animate-pulse" />
-                <div className="absolute bottom-1/4 -right-20 w-80 h-80 rounded-full bg-olive-700/20 blur-3xl animate-pulse" style={{ animationDelay: '0.5s' }} />
+            {/* Minimal Grid Background */}
+            <div className="absolute inset-0 overflow-hidden opacity-[0.03]">
+                <div
+                    className="absolute inset-0"
+                    style={{
+                        backgroundImage: `
+                            linear-gradient(to right, #4a5d23 1px, transparent 1px),
+                            linear-gradient(to bottom, #4a5d23 1px, transparent 1px)
+                        `,
+                        backgroundSize: '80px 80px'
+                    }}
+                />
             </div>
 
-            {/* Gold Lines Decoration */}
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-400/50 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-400/50 to-transparent" />
-
-            {/* Main Content */}
+            {/* Main Content - Ultra Minimal */}
             <div className="relative text-center">
-                {/* Logo */}
-                <div className="mb-8 animate-fade-in">
-                    <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-white tracking-wide">
-                        Stayin<span className="text-amber-400">UBUD</span>
-                    </h1>
-                    <p className="text-white/40 text-xs tracking-[0.4em] uppercase mt-3">
-                        Luxury Villa Rentals
-                    </p>
-                </div>
-
-                {/* Elegant Loader */}
-                <div className="relative">
-                    {/* Rotating Ring */}
-                    <div className="w-16 h-16 mx-auto relative">
-                        <div className="absolute inset-0 border-2 border-amber-400/20 rounded-full" />
-                        <div className="absolute inset-0 border-2 border-transparent border-t-amber-400 rounded-full animate-spin" style={{ animationDuration: '1.5s' }} />
+                {/* Brand Mark */}
+                <div
+                    className={`transition-all duration-700 ${fadeOut ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
+                        }`}
+                    style={{
+                        animation: 'fadeInUp 0.8s ease-out forwards',
+                    }}
+                >
+                    {/* Minimal Logo */}
+                    <div className="mb-12">
+                        <h1 className="font-display text-4xl md:text-5xl text-[#1a1a1a] tracking-[0.02em]">
+                            Stayin<span className="text-olive-600">UBUD</span>
+                        </h1>
                     </div>
 
-                    {/* Loading Text */}
-                    <p className="text-white/30 text-xs tracking-[0.3em] uppercase mt-6 animate-pulse">
-                        Loading Experience
-                    </p>
-                </div>
+                    {/* Elegant Progress Bar */}
+                    <div className="w-48 mx-auto">
+                        {/* Track */}
+                        <div className="h-[1px] bg-gray-200 relative overflow-hidden">
+                            {/* Fill */}
+                            <div
+                                className="absolute left-0 top-0 h-full bg-olive-600 transition-all duration-300 ease-out"
+                                style={{ width: `${Math.min(progress, 100)}%` }}
+                            />
+                        </div>
 
-                {/* Bottom Tagline */}
-                <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                    <p className="text-white/20 text-sm italic font-display">
-                        Ubud, Bali
-                    </p>
+                        {/* Percentage */}
+                        <p className="text-[10px] text-gray-400 tracking-[0.3em] uppercase mt-4 font-medium">
+                            {Math.min(Math.round(progress), 100)}%
+                        </p>
+                    </div>
                 </div>
             </div>
 
-            {/* Corner Decorations */}
-            <div className="absolute top-8 left-8 w-12 h-12 border-l-2 border-t-2 border-amber-400/30" />
-            <div className="absolute top-8 right-8 w-12 h-12 border-r-2 border-t-2 border-amber-400/30" />
-            <div className="absolute bottom-8 left-8 w-12 h-12 border-l-2 border-b-2 border-amber-400/30" />
-            <div className="absolute bottom-8 right-8 w-12 h-12 border-r-2 border-b-2 border-amber-400/30" />
+            {/* Corner Accent - Single, Minimal */}
+            <div className="absolute bottom-8 left-8 flex items-end gap-2 text-gray-300">
+                <div className="w-8 h-[1px] bg-olive-600/30" />
+                <span className="text-[9px] tracking-[0.2em] uppercase text-gray-400">Ubud, Bali</span>
+            </div>
 
             <style jsx>{`
-                @keyframes fade-in {
-                    from { opacity: 0; transform: translateY(20px); }
-                    to { opacity: 1; transform: translateY(0); }
-                }
-                .animate-fade-in {
-                    animation: fade-in 1s ease-out forwards;
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(16px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
                 }
             `}</style>
         </div>

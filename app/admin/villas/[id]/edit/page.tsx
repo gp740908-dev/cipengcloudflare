@@ -219,7 +219,7 @@ export default function EditVillaPage() {
                         </div>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="bg-white border border-gray-100 p-8">
+                    <form onSubmit={handleSubmit} className="bg-white border border-gray-100 p-4 sm:p-6 lg:p-8">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {/* Name */}
                             <div className="md:col-span-2">
@@ -445,7 +445,7 @@ export default function EditVillaPage() {
                                 </p>
                                 <div className="space-y-3">
                                     {formData.nearby_places.map((place, index) => (
-                                        <div key={index} className="flex gap-2 bg-white p-3 border border-gray-100">
+                                        <div key={index} className="flex flex-col sm:flex-row gap-2 bg-white p-3 border border-gray-100">
                                             <input
                                                 type="text"
                                                 value={place.name}
@@ -467,7 +467,7 @@ export default function EditVillaPage() {
                                                 value={place.distance}
                                                 onChange={(e) => updateNearbyPlace(index, 'distance', e.target.value)}
                                                 placeholder="1.5 km"
-                                                className="w-24 px-3 py-2 border border-gray-200 focus:border-olive-600 outline-none transition-colors text-sm"
+                                                className="w-full sm:w-24 px-3 py-2 border border-gray-200 focus:border-olive-600 outline-none transition-colors text-sm"
                                             />
                                             <button
                                                 type="button"
@@ -491,7 +491,7 @@ export default function EditVillaPage() {
                         </div>
 
                         {/* Submit */}
-                        <div className="mt-8 flex justify-end gap-4">
+                        <div className="mt-8 flex flex-col sm:flex-row justify-end gap-3">
                             <Link
                                 href="/admin/villas"
                                 className="px-6 py-3 border border-gray-200 text-gray-600 hover:bg-gray-50 transition-colors"
