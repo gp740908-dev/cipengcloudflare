@@ -317,59 +317,59 @@ export default function AnalyticsPage() {
                     {/* Stats Cards */}
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                         {/* Today Views */}
-                        <div className="bg-white border border-gray-100 p-6">
-                            <div className="flex items-center justify-between mb-4">
-                                <Eye size={20} className="text-olive-600" />
+                        <div className="bg-white border border-gray-100 p-4 sm:p-6">
+                            <div className="flex items-center justify-between mb-3 sm:mb-4">
+                                <Eye size={18} className="text-olive-600" />
                                 <div className={`flex items-center gap-1 text-xs ${viewsChange.isUp ? 'text-green-600' : 'text-red-600'}`}>
                                     {viewsChange.isUp ? <TrendingUp size={14} /> : <TrendingDown size={14} />}
                                     <span>{viewsChange.value}%</span>
                                 </div>
                             </div>
-                            <p className="text-3xl font-display text-gray-900 mb-1">{formatNumber(realtime.today_views)}</p>
-                            <p className="text-gray-500 text-sm">Page Views Hari Ini</p>
+                            <p className="text-2xl sm:text-3xl font-display text-gray-900 mb-1">{formatNumber(realtime.today_views)}</p>
+                            <p className="text-gray-500 text-xs sm:text-sm">Page Views Hari Ini</p>
                         </div>
 
                         {/* Today Visitors */}
-                        <div className="bg-white border border-gray-100 p-6">
-                            <div className="flex items-center justify-between mb-4">
-                                <Users size={20} className="text-olive-600" />
+                        <div className="bg-white border border-gray-100 p-4 sm:p-6">
+                            <div className="flex items-center justify-between mb-3 sm:mb-4">
+                                <Users size={18} className="text-olive-600" />
                                 <div className={`flex items-center gap-1 text-xs ${visitorsChange.isUp ? 'text-green-600' : 'text-red-600'}`}>
                                     {visitorsChange.isUp ? <TrendingUp size={14} /> : <TrendingDown size={14} />}
                                     <span>{visitorsChange.value}%</span>
                                 </div>
                             </div>
-                            <p className="text-3xl font-display text-gray-900 mb-1">{formatNumber(realtime.today_visitors)}</p>
-                            <p className="text-gray-500 text-sm">Unique Visitors Hari Ini</p>
+                            <p className="text-2xl sm:text-3xl font-display text-gray-900 mb-1">{formatNumber(realtime.today_visitors)}</p>
+                            <p className="text-gray-500 text-xs sm:text-sm">Visitors Hari Ini</p>
                         </div>
 
                         {/* Week Views */}
-                        <div className="bg-white border border-gray-100 p-6">
-                            <div className="flex items-center justify-between mb-4">
-                                <Calendar size={20} className="text-olive-600" />
+                        <div className="bg-white border border-gray-100 p-4 sm:p-6">
+                            <div className="flex items-center justify-between mb-3 sm:mb-4">
+                                <Calendar size={18} className="text-olive-600" />
                             </div>
-                            <p className="text-3xl font-display text-gray-900 mb-1">{formatNumber(realtime.this_week_views)}</p>
-                            <p className="text-gray-500 text-sm">Views 7 Hari Terakhir</p>
+                            <p className="text-2xl sm:text-3xl font-display text-gray-900 mb-1">{formatNumber(realtime.this_week_views)}</p>
+                            <p className="text-gray-500 text-xs sm:text-sm">Views 7 Hari</p>
                         </div>
 
                         {/* Month Views */}
-                        <div className="bg-white border border-gray-100 p-6">
-                            <div className="flex items-center justify-between mb-4">
-                                <TrendingUp size={20} className="text-olive-600" />
+                        <div className="bg-white border border-gray-100 p-4 sm:p-6">
+                            <div className="flex items-center justify-between mb-3 sm:mb-4">
+                                <TrendingUp size={18} className="text-olive-600" />
                             </div>
-                            <p className="text-3xl font-display text-gray-900 mb-1">{formatNumber(realtime.this_month_views)}</p>
-                            <p className="text-gray-500 text-sm">Views 30 Hari Terakhir</p>
+                            <p className="text-2xl sm:text-3xl font-display text-gray-900 mb-1">{formatNumber(realtime.this_month_views)}</p>
+                            <p className="text-gray-500 text-xs sm:text-sm">Views 30 Hari</p>
                         </div>
                     </div>
 
-                    <div className="grid lg:grid-cols-3 gap-8 mb-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mb-8">
                         {/* Chart Area */}
-                        <div className="lg:col-span-2 bg-white border border-gray-100 p-6">
-                            <div className="flex items-center justify-between mb-6">
+                        <div className="lg:col-span-2 bg-white border border-gray-100 p-4 sm:p-6">
+                            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
                                 <h3 className="font-display text-lg text-gray-900">Traffic Overview</h3>
                                 <div className="flex items-center gap-4">
                                     <div className="flex items-center gap-2">
                                         <div className="w-3 h-3 bg-olive-600 rounded-sm" />
-                                        <span className="text-xs text-gray-500">Page Views</span>
+                                        <span className="text-xs text-gray-500">Views</span>
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <div className="w-3 h-3 bg-olive-300 rounded-sm" />
@@ -467,21 +467,21 @@ export default function AnalyticsPage() {
                                     </div>
 
                                     {/* Summary Stats */}
-                                    <div className="mt-6 pt-4 border-t border-gray-100 grid grid-cols-3 gap-4">
+                                    <div className="mt-6 pt-4 border-t border-gray-100 grid grid-cols-3 gap-2 sm:gap-4">
                                         <div className="text-center">
-                                            <p className="text-2xl font-display text-gray-900">
+                                            <p className="text-xl sm:text-2xl font-display text-gray-900">
                                                 {formatNumber(dailyData.reduce((sum, d) => sum + d.views, 0))}
                                             </p>
                                             <p className="text-xs text-gray-500">Total Views</p>
                                         </div>
                                         <div className="text-center">
-                                            <p className="text-2xl font-display text-gray-900">
+                                            <p className="text-xl sm:text-2xl font-display text-gray-900">
                                                 {formatNumber(dailyData.reduce((sum, d) => sum + d.visitors, 0))}
                                             </p>
                                             <p className="text-xs text-gray-500">Total Visitors</p>
                                         </div>
                                         <div className="text-center">
-                                            <p className="text-2xl font-display text-gray-900">
+                                            <p className="text-xl sm:text-2xl font-display text-gray-900">
                                                 {dailyData.length > 0
                                                     ? (dailyData.reduce((sum, d) => sum + d.views, 0) / dailyData.length).toFixed(0)
                                                     : 0
@@ -501,7 +501,7 @@ export default function AnalyticsPage() {
                         </div>
 
                         {/* Device Breakdown */}
-                        <div className="bg-white border border-gray-100 p-6">
+                        <div className="bg-white border border-gray-100 p-4 sm:p-6">
                             <h3 className="font-display text-lg text-gray-900 mb-6">Devices</h3>
                             <div className="space-y-4">
                                 <div>
@@ -559,7 +559,7 @@ export default function AnalyticsPage() {
 
                     <div className="grid lg:grid-cols-2 gap-8">
                         {/* Top Pages */}
-                        <div className="bg-white border border-gray-100 p-6">
+                        <div className="bg-white border border-gray-100 p-4 sm:p-6">
                             <div className="flex items-center gap-2 mb-6">
                                 <FileText size={18} className="text-olive-600" />
                                 <h3 className="font-display text-lg text-gray-900">Top Pages</h3>
@@ -572,7 +572,7 @@ export default function AnalyticsPage() {
                                                 <span className="w-6 h-6 bg-gray-100 text-gray-500 text-xs flex items-center justify-center">
                                                     {i + 1}
                                                 </span>
-                                                <span className="text-sm text-gray-700 truncate max-w-xs">{page.path}</span>
+                                                <span className="text-sm text-gray-700 truncate max-w-[120px] sm:max-w-xs">{page.path}</span>
                                             </div>
                                             <span className="text-sm font-medium text-gray-900">{formatNumber(page.views)}</span>
                                         </div>
@@ -584,7 +584,7 @@ export default function AnalyticsPage() {
                         </div>
 
                         {/* Top Referrers */}
-                        <div className="bg-white border border-gray-100 p-6">
+                        <div className="bg-white border border-gray-100 p-4 sm:p-6">
                             <div className="flex items-center gap-2 mb-6">
                                 <Globe size={18} className="text-olive-600" />
                                 <h3 className="font-display text-lg text-gray-900">Top Referrers</h3>
@@ -597,7 +597,7 @@ export default function AnalyticsPage() {
                                                 <span className="w-6 h-6 bg-gray-100 text-gray-500 text-xs flex items-center justify-center">
                                                     {i + 1}
                                                 </span>
-                                                <span className="text-sm text-gray-700 truncate max-w-xs">{ref.referrer}</span>
+                                                <span className="text-sm text-gray-700 truncate max-w-[120px] sm:max-w-xs">{ref.referrer}</span>
                                             </div>
                                             <span className="text-sm font-medium text-gray-900">{formatNumber(ref.views)}</span>
                                         </div>
