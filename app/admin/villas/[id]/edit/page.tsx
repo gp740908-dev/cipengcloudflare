@@ -133,24 +133,6 @@ export default function EditVillaPage() {
         }
     }
 
-    // Image handlers
-    const addImageField = () => {
-        setFormData({ ...formData, images: [...formData.images, ''] })
-    }
-
-    const removeImageField = (index: number) => {
-        setFormData({
-            ...formData,
-            images: formData.images.filter((_, i) => i !== index)
-        })
-    }
-
-    const updateImage = (index: number, value: string) => {
-        const newImages = [...formData.images]
-        newImages[index] = value
-        setFormData({ ...formData, images: newImages })
-    }
-
     // Amenity handlers
     const addAmenity = () => {
         setFormData({ ...formData, amenities: [...formData.amenities, ''] })

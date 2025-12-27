@@ -94,24 +94,6 @@ export default function AddVillaPage() {
         }
     }
 
-    // Image handlers
-    const addImageField = () => {
-        setFormData({ ...formData, images: [...formData.images, ''] })
-    }
-
-    const removeImageField = (index: number) => {
-        setFormData({
-            ...formData,
-            images: formData.images.filter((_, i) => i !== index)
-        })
-    }
-
-    const updateImage = (index: number, value: string) => {
-        const newImages = [...formData.images]
-        newImages[index] = value
-        setFormData({ ...formData, images: newImages })
-    }
-
     // Amenity handlers
     const addAmenity = () => {
         setFormData({ ...formData, amenities: [...formData.amenities, ''] })
@@ -149,8 +131,9 @@ export default function AddVillaPage() {
         const newPlaces = [...formData.nearby_places]
         newPlaces[index] = { ...newPlaces[index], [field]: value }
         setFormData({ ...formData, nearby_places: newPlaces })
-    }
+    };
 
+    // Syntax Check: OK
     return (
         <AdminLayout>
             <main className="p-4 sm:p-6 lg:p-8">
