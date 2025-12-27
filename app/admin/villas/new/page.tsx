@@ -14,6 +14,7 @@ import {
 import { createClient } from '@/lib/supabase/client'
 import { NearbyPlace } from '@/types'
 import AdminLayout from '@/components/admin/AdminLayout'
+import ImageUploader from '@/components/admin/ImageUploader'
 import { useToast } from '@/components/ui/Toast'
 
 const placeTypes = [
@@ -44,7 +45,7 @@ export default function AddVillaPage() {
         latitude: -8.5069,
         longitude: 115.2624,
         amenities: ['WiFi', 'Private Pool', 'Air Conditioning'],
-        images: [''],
+        images: [] as string[],
         nearby_places: [] as NearbyPlace[],
     })
 
@@ -56,8 +57,8 @@ export default function AddVillaPage() {
             return
         }
 
-        if (formData.images.filter(img => img.trim()).length === 0) {
-            toast.warning('Minimal 1 gambar wajib diisi')
+        if (formData.images.length === 0) {
+            toast.warning('Minimal 1 gambar wajib diupload')
             return
         }
 
@@ -77,7 +78,7 @@ export default function AddVillaPage() {
                     latitude: formData.latitude || null,
                     longitude: formData.longitude || null,
                     amenities: formData.amenities.filter(a => a.trim()),
-                    images: formData.images.filter(img => img.trim()),
+                    images: formData.images,
                     nearby_places: formData.nearby_places.filter(p => p.name.trim()),
                 })
 
@@ -316,160 +317,138 @@ export default function AddVillaPage() {
                             {/* Images */}
                             <div className="md:col-span-2">
                                 <label className="block text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
-                                    URL Gambar *
+                                    Gambar Villa *
                                 </label>
-                                <div className="space-y-2">
-                                    {formData.images.map((image, index) => (
-                                        <div key={index} className="flex gap-2">
-                                            <input
-                                                type="url"
-                                                value={image}
-                                                onChange={(e) => updateImage(index, e.target.value)}
-                                                placeholder="https://images.unsplash.com/..."
-                                                className="flex-1 px-4 py-2 border border-gray-200 focus:border-olive-600 outline-none transition-colors"
-                                            />
-                                            {formData.images.length > 1 && (
-                                                <button
-                                                    type="button"
-                                                    onClick={() => removeImageField(index)}
-                                                    className="p-2 text-red-500 hover:bg-red-50"
-                                                >
-                                                    <X size={18} />
-                                                </button>
-                                            )}
-                                        </div>
-                                    ))}
-                                    <button
-                                        type="button"
-                                        onClick={addImageField}
-                                        className="flex items-center gap-2 text-olive-600 hover:text-olive-900 text-sm"
-                                    >
-                                        <Plus size={16} />
-                                        <span>Tambah Gambar</span>
-                                    </button>
-                                </div>
-                            </div>
-
-                            {/* Amenities */}
-                            <div className="md:col-span-2">
-                                <label className="block text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
-                                    Fasilitas
-                                </label>
-                                <div className="space-y-2">
-                                    {formData.amenities.map((amenity, index) => (
-                                        <div key={index} className="flex gap-2">
-                                            <input
-                                                type="text"
-                                                value={amenity}
-                                                onChange={(e) => updateAmenity(index, e.target.value)}
-                                                placeholder="Private Pool"
-                                                className="flex-1 px-4 py-2 border border-gray-200 focus:border-olive-600 outline-none transition-colors"
-                                            />
-                                            <button
-                                                type="button"
-                                                onClick={() => removeAmenity(index)}
-                                                className="p-2 text-red-500 hover:bg-red-50"
-                                            >
-                                                <X size={18} />
-                                            </button>
-                                        </div>
-                                    ))}
-                                    <button
-                                        type="button"
-                                        onClick={addAmenity}
-                                        className="flex items-center gap-2 text-olive-600 hover:text-olive-900 text-sm"
-                                    >
-                                        <Plus size={16} />
-                                        <span>Tambah Fasilitas</span>
-                                    </button>
-                                </div>
-                            </div>
-
-                            {/* Nearby Places */}
-                            <div className="md:col-span-2 p-4 bg-blue-50 border border-blue-200">
-                                <div className="flex items-center gap-2 mb-4">
-                                    <Navigation size={16} className="text-blue-600" />
-                                    <span className="text-sm font-medium text-gray-700">Tempat Terdekat</span>
-                                </div>
-                                <p className="text-xs text-gray-500 mb-4">
-                                    Tambahkan tempat-tempat menarik di sekitar villa (pantai, kuil, restoran, dll)
-                                </p>
-                                <div className="space-y-3">
-                                    {formData.nearby_places.map((place, index) => (
-                                        <div key={index} className="flex flex-col sm:flex-row gap-2 bg-white p-3 border border-gray-100">
-                                            <input
-                                                type="text"
-                                                value={place.name}
-                                                onChange={(e) => updateNearbyPlace(index, 'name', e.target.value)}
-                                                placeholder="Nama tempat"
-                                                className="flex-1 px-3 py-2 border border-gray-200 focus:border-olive-600 outline-none transition-colors text-sm"
-                                            />
-                                            <select
-                                                value={place.type}
-                                                onChange={(e) => updateNearbyPlace(index, 'type', e.target.value)}
-                                                className="px-3 py-2 border border-gray-200 focus:border-olive-600 outline-none transition-colors text-sm"
-                                            >
-                                                {placeTypes.map(t => (
-                                                    <option key={t.value} value={t.value}>{t.label}</option>
-                                                ))}
-                                            </select>
-                                            <input
-                                                type="text"
-                                                value={place.distance}
-                                                onChange={(e) => updateNearbyPlace(index, 'distance', e.target.value)}
-                                                placeholder="1.5 km"
-                                                className="w-full sm:w-24 px-3 py-2 border border-gray-200 focus:border-olive-600 outline-none transition-colors text-sm"
-                                            />
-                                            <button
-                                                type="button"
-                                                onClick={() => removeNearbyPlace(index)}
-                                                className="p-2 text-red-500 hover:bg-red-50"
-                                            >
-                                                <X size={16} />
-                                            </button>
-                                        </div>
-                                    ))}
-                                    <button
-                                        type="button"
-                                        onClick={addNearbyPlace}
-                                        className="flex items-center gap-2 text-blue-600 hover:text-blue-800 text-sm"
-                                    >
-                                        <Plus size={16} />
-                                        <span>Tambah Tempat Terdekat</span>
-                                    </button>
-                                </div>
+                                <ImageUploader
+                                    images={formData.images}
+                                    onImagesChange={(images) => setFormData({ ...formData, images })}
+                                    folder="villas"
+                                    maxImages={10}
+                                    disabled={loading}
+                                />
                             </div>
                         </div>
 
-                        {/* Submit */}
-                        <div className="mt-8 flex flex-col sm:flex-row justify-end gap-3">
-                            <Link
-                                href="/admin/villas"
-                                className="px-6 py-3 border border-gray-200 text-gray-600 hover:bg-gray-50 transition-colors"
-                            >
-                                Batal
-                            </Link>
-                            <button
-                                type="submit"
-                                disabled={loading}
-                                className="flex items-center gap-2 px-6 py-3 bg-olive-600 text-white hover:bg-olive-900 transition-colors disabled:opacity-50"
-                            >
-                                {loading ? (
-                                    <>
-                                        <Loader2 size={18} className="animate-spin" />
-                                        <span>Menyimpan...</span>
-                                    </>
-                                ) : (
-                                    <>
-                                        <Plus size={18} />
-                                        <span>Tambah Villa</span>
-                                    </>
-                                )}
-                            </button>
+                        {/* Amenities */}
+                        <div className="md:col-span-2">
+                            <label className="block text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
+                                Fasilitas
+                            </label>
+                            <div className="space-y-2">
+                                {formData.amenities.map((amenity, index) => (
+                                    <div key={index} className="flex gap-2">
+                                        <input
+                                            type="text"
+                                            value={amenity}
+                                            onChange={(e) => updateAmenity(index, e.target.value)}
+                                            placeholder="Private Pool"
+                                            className="flex-1 px-4 py-2 border border-gray-200 focus:border-olive-600 outline-none transition-colors"
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={() => removeAmenity(index)}
+                                            className="p-2 text-red-500 hover:bg-red-50"
+                                        >
+                                            <X size={18} />
+                                        </button>
+                                    </div>
+                                ))}
+                                <button
+                                    type="button"
+                                    onClick={addAmenity}
+                                    className="flex items-center gap-2 text-olive-600 hover:text-olive-900 text-sm"
+                                >
+                                    <Plus size={16} />
+                                    <span>Tambah Fasilitas</span>
+                                </button>
+                            </div>
                         </div>
-                    </form>
+
+                        {/* Nearby Places */}
+                        <div className="md:col-span-2 p-4 bg-blue-50 border border-blue-200">
+                            <div className="flex items-center gap-2 mb-4">
+                                <Navigation size={16} className="text-blue-600" />
+                                <span className="text-sm font-medium text-gray-700">Tempat Terdekat</span>
+                            </div>
+                            <p className="text-xs text-gray-500 mb-4">
+                                Tambahkan tempat-tempat menarik di sekitar villa (pantai, kuil, restoran, dll)
+                            </p>
+                            <div className="space-y-3">
+                                {formData.nearby_places.map((place, index) => (
+                                    <div key={index} className="flex flex-col sm:flex-row gap-2 bg-white p-3 border border-gray-100">
+                                        <input
+                                            type="text"
+                                            value={place.name}
+                                            onChange={(e) => updateNearbyPlace(index, 'name', e.target.value)}
+                                            placeholder="Nama tempat"
+                                            className="flex-1 px-3 py-2 border border-gray-200 focus:border-olive-600 outline-none transition-colors text-sm"
+                                        />
+                                        <select
+                                            value={place.type}
+                                            onChange={(e) => updateNearbyPlace(index, 'type', e.target.value)}
+                                            className="px-3 py-2 border border-gray-200 focus:border-olive-600 outline-none transition-colors text-sm"
+                                        >
+                                            {placeTypes.map(t => (
+                                                <option key={t.value} value={t.value}>{t.label}</option>
+                                            ))}
+                                        </select>
+                                        <input
+                                            type="text"
+                                            value={place.distance}
+                                            onChange={(e) => updateNearbyPlace(index, 'distance', e.target.value)}
+                                            placeholder="1.5 km"
+                                            className="w-full sm:w-24 px-3 py-2 border border-gray-200 focus:border-olive-600 outline-none transition-colors text-sm"
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={() => removeNearbyPlace(index)}
+                                            className="p-2 text-red-500 hover:bg-red-50"
+                                        >
+                                            <X size={16} />
+                                        </button>
+                                    </div>
+                                ))}
+                                <button
+                                    type="button"
+                                    onClick={addNearbyPlace}
+                                    className="flex items-center gap-2 text-blue-600 hover:text-blue-800 text-sm"
+                                >
+                                    <Plus size={16} />
+                                    <span>Tambah Tempat Terdekat</span>
+                                </button>
+                            </div>
+                        </div>
                 </div>
-            </main>
-        </AdminLayout>
+
+                {/* Submit */}
+                <div className="mt-8 flex flex-col sm:flex-row justify-end gap-3">
+                    <Link
+                        href="/admin/villas"
+                        className="px-6 py-3 border border-gray-200 text-gray-600 hover:bg-gray-50 transition-colors"
+                    >
+                        Batal
+                    </Link>
+                    <button
+                        type="submit"
+                        disabled={loading}
+                        className="flex items-center gap-2 px-6 py-3 bg-olive-600 text-white hover:bg-olive-900 transition-colors disabled:opacity-50"
+                    >
+                        {loading ? (
+                            <>
+                                <Loader2 size={18} className="animate-spin" />
+                                <span>Menyimpan...</span>
+                            </>
+                        ) : (
+                            <>
+                                <Plus size={18} />
+                                <span>Tambah Villa</span>
+                            </>
+                        )}
+                    </button>
+                </div>
+            </form>
+        </div>
+            </main >
+        </AdminLayout >
     )
 }

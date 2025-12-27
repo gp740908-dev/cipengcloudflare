@@ -15,6 +15,7 @@ import {
 import { createClient } from '@/lib/supabase/client'
 import { NearbyPlace } from '@/types'
 import AdminLayout from '@/components/admin/AdminLayout'
+import ImageUploader from '@/components/admin/ImageUploader'
 import { useToast } from '@/components/ui/Toast'
 
 const placeTypes = [
@@ -365,38 +366,15 @@ export default function EditVillaPage() {
                             {/* Images */}
                             <div className="md:col-span-2">
                                 <label className="block text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
-                                    URL Gambar
+                                    Gambar Villa
                                 </label>
-                                <div className="space-y-2">
-                                    {formData.images.map((image, index) => (
-                                        <div key={index} className="flex gap-2">
-                                            <input
-                                                type="url"
-                                                value={image}
-                                                onChange={(e) => updateImage(index, e.target.value)}
-                                                placeholder="https://images.unsplash.com/..."
-                                                className="flex-1 px-4 py-2 border border-gray-200 focus:border-olive-600 outline-none transition-colors"
-                                            />
-                                            {formData.images.length > 1 && (
-                                                <button
-                                                    type="button"
-                                                    onClick={() => removeImageField(index)}
-                                                    className="p-2 text-red-500 hover:bg-red-50"
-                                                >
-                                                    <X size={18} />
-                                                </button>
-                                            )}
-                                        </div>
-                                    ))}
-                                    <button
-                                        type="button"
-                                        onClick={addImageField}
-                                        className="flex items-center gap-2 text-olive-600 hover:text-olive-900 text-sm"
-                                    >
-                                        <Plus size={16} />
-                                        <span>Tambah Gambar</span>
-                                    </button>
-                                </div>
+                                <ImageUploader
+                                    images={formData.images}
+                                    onImagesChange={(images) => setFormData({ ...formData, images })}
+                                    folder="villas"
+                                    maxImages={10}
+                                    disabled={saving}
+                                />
                             </div>
 
                             {/* Amenities */}

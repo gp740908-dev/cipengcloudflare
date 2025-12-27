@@ -121,16 +121,15 @@ export default function HeroClient({ villas, blurDataURL = defaultBlurDataURL }:
                             className="absolute inset-0"
                         >
                             <Image
-                                src={getOptimizedImageUrl(currentVilla.image, imagePresets.hero)}
+                                src={currentVilla.image}
                                 alt={currentVilla.name}
                                 fill
                                 priority
                                 className="object-cover"
                                 sizes="100vw"
-                                quality={75}
+                                quality={60}
                                 placeholder="blur"
                                 blurDataURL={blurDataURL}
-                                unoptimized
                             />
                         </motion.div>
                     </motion.div>
