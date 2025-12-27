@@ -11,7 +11,6 @@ import CTASection from '@/components/home/CTASection'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import WhatsAppButton from '@/components/WhatsAppButton'
-import BackToTop from '@/components/BackToTop'
 import PromoBanner from '@/components/PromoBanner'
 import { createMetadata } from '@/lib/seo'
 
@@ -49,7 +48,6 @@ export default function HomePage() {
       <CTASection />
       <Footer />
       <WhatsAppButton />
-      <BackToTop />
       <PromoBanner page="home" />
     </main>
   )

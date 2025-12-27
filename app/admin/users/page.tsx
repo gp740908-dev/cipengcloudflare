@@ -166,7 +166,8 @@ export default function AdminUsersPage() {
                         </div>
                     ) : (
                         <div className="bg-white border border-gray-100">
-                            <table className="w-full">
+                            {/* Desktop Table */}
+                            <table className="w-full hidden md:table">
                                 <thead className="bg-gray-50 border-b border-gray-100">
                                     <tr>
                                         <th className="text-left px-5 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
@@ -228,6 +229,50 @@ export default function AdminUsersPage() {
                                     ))}
                                 </tbody>
                             </table>
+
+                            {/* Mobile Cards */}
+                            <div className="md:hidden divide-y divide-gray-100">
+                                {users.map((user) => (
+                                    <div key={user.id} className="p-4">
+                                        <div className="flex items-start justify-between">
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-9 h-9 bg-olive-100 flex items-center justify-center flex-shrink-0">
+                                                    <Mail size={16} className="text-olive-600" />
+                                                </div>
+                                                <div>
+                                                    <p className="font-medium text-gray-900 text-sm break-all">{user.email}</p>
+                                                    {user.email === currentUserEmail && (
+                                                        <span className="text-xs text-olive-600">(Anda)</span>
+                                                    )}
+                                                </div>
+                                            </div>
+                                            <button
+                                                onClick={() => handleDelete(user.id, user.email)}
+                                                disabled={deleting === user.id || user.email === currentUserEmail}
+                                                className="p-2 hover:bg-gray-100 transition-colors text-gray-400 hover:text-red-600 disabled:opacity-30 disabled:cursor-not-allowed flex-shrink-0"
+                                            >
+                                                {deleting === user.id ? (
+                                                    <Loader2 size={18} className="animate-spin" />
+                                                ) : (
+                                                    <Trash2 size={18} />
+                                                )}
+                                            </button>
+                                        </div>
+                                        <div className="flex items-center gap-3 mt-3 ml-12">
+                                            <span className={`inline-flex items-center gap-1 px-2 py-1 text-xs font-medium ${user.role === 'super_admin'
+                                                ? 'bg-purple-100 text-purple-700'
+                                                : 'bg-olive-100 text-olive-700'
+                                                }`}>
+                                                <Shield size={12} />
+                                                <span>{user.role === 'super_admin' ? 'Super Admin' : 'Admin'}</span>
+                                            </span>
+                                            <span className="text-xs text-gray-400">
+                                                {format(parseISO(user.created_at), 'dd MMM yyyy', { locale: id })}
+                                            </span>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     )}
                 </div>

@@ -293,7 +293,7 @@ export default function AdminReportsPage() {
                     </div>
 
                     {/* Stats Cards */}
-                    <div className="grid grid-cols-4 gap-4 mb-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                         <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -354,7 +354,7 @@ export default function AdminReportsPage() {
                         </motion.div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-6 mb-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
                         {/* Booking by Status */}
                         <div className="bg-white border border-gray-100 p-5">
                             <h3 className="font-display text-lg text-gray-900 mb-4 flex items-center gap-2">
@@ -415,7 +415,7 @@ export default function AdminReportsPage() {
                             Export Data
                         </h3>
 
-                        <div className="flex items-end gap-4">
+                        <div className="flex flex-col sm:flex-row sm:items-end gap-4">
                             <div className="flex-1">
                                 <label className="block text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
                                     Pilih Tipe Data
