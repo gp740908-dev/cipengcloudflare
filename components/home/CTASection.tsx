@@ -78,7 +78,7 @@ export default function CTASection() {
                                 {[...Array(5)].map((_, i) => (
                                     <Star key={i} size={16} className="text-olive-400 fill-olive-400" />
                                 ))}
-                                <span className="text-white/60 text-sm ml-2">Rated 4.9 by our guests</span>
+                                <span className="text-white/80 text-sm ml-2">Rated 4.9 by our guests</span>
                             </div>
 
                             {/* Titles */}
@@ -89,7 +89,7 @@ export default function CTASection() {
                                 Bali Journey
                             </h2>
 
-                            <p className={`text-white/60 text-lg md:text-xl leading-relaxed mb-10 max-w-xl ${isInView ? 'animate-fade-up stagger-3' : 'opacity-0'}`}>
+                            <p className={`text-white/80 text-lg md:text-xl leading-relaxed mb-10 max-w-xl ${isInView ? 'animate-fade-up stagger-3' : 'opacity-0'}`}>
                                 Let our concierge team craft your perfect getaway. From private chef experiences to sacred temple visits, we handle every detail.
                             </p>
 
@@ -113,11 +113,11 @@ export default function CTASection() {
 
                             {/* Contact Info */}
                             <div className={`flex flex-wrap gap-8 pt-8 border-t border-white/10 ${isInView ? 'animate-fade-up stagger-5' : 'opacity-0'}`}>
-                                <a href="tel:+6281234567890" className="flex items-center gap-3 text-white/60 hover:text-white transition-colors">
+                                <a href="tel:+6281234567890" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
                                     <Phone size={16} className="text-olive-400" />
                                     <span className="text-sm">+62 812 3456 7890</span>
                                 </a>
-                                <div className="flex items-center gap-3 text-white/60">
+                                <div className="flex items-center gap-3 text-white/80">
                                     <MapPin size={16} className="text-olive-400" />
                                     <span className="text-sm">Ubud, Bali, Indonesia</span>
                                 </div>
@@ -144,7 +144,7 @@ export default function CTASection() {
                                                 </span>
                                                 <div>
                                                     <p className="text-white font-medium">{stat.label}</p>
-                                                    <p className="text-white/50 text-sm">{stat.desc}</p>
+                                                    <p className="text-white/70 text-sm">{stat.desc}</p>
                                                 </div>
                                             </div>
                                         )

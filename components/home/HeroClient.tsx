@@ -231,13 +231,15 @@ export default function HeroClient({ villas, blurDataURL = defaultBlurDataURL }:
                                 <div className="flex items-center gap-2">
                                     <button
                                         onClick={prev}
-                                        className="w-9 h-9 md:w-10 md:h-10 border border-white/30 flex items-center justify-center text-white/60 hover:text-white hover:border-white transition-colors"
+                                        aria-label="Previous slide"
+                                        className="w-9 h-9 md:w-10 md:h-10 border border-white/30 flex items-center justify-center text-white/80 hover:text-white hover:border-white transition-colors"
                                     >
                                         <ChevronLeft size={16} />
                                     </button>
                                     <button
                                         onClick={next}
-                                        className="w-9 h-9 md:w-10 md:h-10 border border-white/30 flex items-center justify-center text-white/60 hover:text-white hover:border-white transition-colors"
+                                        aria-label="Next slide"
+                                        className="w-9 h-9 md:w-10 md:h-10 border border-white/30 flex items-center justify-center text-white/80 hover:text-white hover:border-white transition-colors"
                                     >
                                         <ChevronRight size={16} />
                                     </button>
@@ -245,7 +247,8 @@ export default function HeroClient({ villas, blurDataURL = defaultBlurDataURL }:
                                     {/* Play/Pause - Hidden on mobile */}
                                     <button
                                         onClick={() => setIsPlaying(!isPlaying)}
-                                        className="hidden sm:flex w-9 h-9 md:w-10 md:h-10 border border-white/30 items-center justify-center text-white/60 hover:text-white hover:border-white transition-colors"
+                                        aria-label={isPlaying ? 'Pause slideshow' : 'Play slideshow'}
+                                        className="hidden sm:flex w-9 h-9 md:w-10 md:h-10 border border-white/30 items-center justify-center text-white/80 hover:text-white hover:border-white transition-colors"
                                     >
                                         {isPlaying ? <Pause size={12} /> : <Play size={12} />}
                                     </button>
@@ -257,6 +260,7 @@ export default function HeroClient({ villas, blurDataURL = defaultBlurDataURL }:
                                         <button
                                             key={index}
                                             onClick={() => goTo(index)}
+                                            aria-label={`Go to slide ${index + 1}`}
                                             className="relative h-1 overflow-hidden transition-all"
                                             style={{ width: index === current ? 32 : 16 }}
                                         >
@@ -275,7 +279,7 @@ export default function HeroClient({ villas, blurDataURL = defaultBlurDataURL }:
                                     ))}
 
                                     {/* Counter */}
-                                    <span className="hidden md:block text-white/40 text-xs font-mono ml-2">
+                                    <span className="hidden md:block text-white/60 text-xs font-mono ml-2">
                                         <span className="text-white">{String(current + 1).padStart(2, '0')}</span>
                                         /{String(villas.length).padStart(2, '0')}
                                     </span>

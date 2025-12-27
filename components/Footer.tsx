@@ -139,7 +139,7 @@ export default function Footer() {
                                 Stayin<span className="text-olive-400">UBUD</span>
                             </span>
                         </Link>
-                        <p className="text-white/40 max-w-sm leading-relaxed mb-8 text-sm">
+                        <p className="text-white/70 max-w-sm leading-relaxed mb-8 text-sm">
                             Curating exceptional villa experiences in Ubud, Bali.
                             Where architectural excellence meets Balinese tranquility.
                         </p>
@@ -147,7 +147,7 @@ export default function Footer() {
                         {/* Eco Badge */}
                         <div className="flex items-center gap-3 p-4 bg-white/5 border border-white/10 inline-flex">
                             <Leaf size={16} className="text-olive-400" />
-                            <span className="text-white/60 text-xs">Eco-Friendly Luxury</span>
+                            <span className="text-white/80 text-xs">Eco-Friendly Luxury</span>
                         </div>
                     </div>
 
@@ -161,7 +161,7 @@ export default function Footer() {
                                 <li key={link.href}>
                                     <Link
                                         href={link.href}
-                                        className="text-white/60 hover:text-olive-400 transition-colors text-sm inline-flex items-center gap-1 group"
+                                        className="text-white/80 hover:text-olive-400 transition-colors text-sm inline-flex items-center gap-1 group"
                                     >
                                         {link.label}
                                         <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -181,7 +181,7 @@ export default function Footer() {
                                 <li key={link.href}>
                                     <Link
                                         href={link.href}
-                                        className="text-white/60 hover:text-olive-400 transition-colors text-sm"
+                                        className="text-white/80 hover:text-olive-400 transition-colors text-sm"
                                     >
                                         {link.label}
                                     </Link>
@@ -199,7 +199,7 @@ export default function Footer() {
                             <li>
                                 <a
                                     href={`mailto:${settings.contact.email}`}
-                                    className="flex items-center gap-3 text-white/60 hover:text-olive-400 transition-colors text-sm"
+                                    className="flex items-center gap-3 text-white/80 hover:text-olive-400 transition-colors text-sm"
                                 >
                                     <Mail size={16} className="text-olive-400/50" />
                                     {settings.contact.email}
@@ -208,13 +208,13 @@ export default function Footer() {
                             <li>
                                 <a
                                     href={`tel:${settings.contact.phone.replace(/\s/g, '')}`}
-                                    className="flex items-center gap-3 text-white/60 hover:text-olive-400 transition-colors text-sm"
+                                    className="flex items-center gap-3 text-white/80 hover:text-olive-400 transition-colors text-sm"
                                 >
                                     <Phone size={16} className="text-olive-400/50" />
                                     {settings.contact.phone}
                                 </a>
                             </li>
-                            <li className="flex items-start gap-3 text-white/60 text-sm">
+                            <li className="flex items-start gap-3 text-white/80 text-sm">
                                 <MapPin size={16} className="text-olive-400/50 flex-shrink-0 mt-0.5" />
                                 <span>{settings.contact.address}</span>
                             </li>
@@ -227,7 +227,7 @@ export default function Footer() {
                                     href={settings.social.instagram}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-10 h-10 flex items-center justify-center border border-white/10 text-white/40 hover:text-olive-400 hover:border-olive-400/50 transition-all"
+                                    className="w-10 h-10 flex items-center justify-center border border-white/10 text-white/70 hover:text-olive-400 hover:border-olive-400/50 transition-all"
                                     aria-label="Instagram"
                                 >
                                     <Instagram size={18} />
@@ -238,7 +238,7 @@ export default function Footer() {
                                     href={settings.social.facebook}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-10 h-10 flex items-center justify-center border border-white/10 text-white/40 hover:text-olive-400 hover:border-olive-400/50 transition-all"
+                                    className="w-10 h-10 flex items-center justify-center border border-white/10 text-white/70 hover:text-olive-400 hover:border-olive-400/50 transition-all"
                                     aria-label="Facebook"
                                 >
                                     <Facebook size={18} />
@@ -249,7 +249,7 @@ export default function Footer() {
                                     href={settings.social.youtube}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-10 h-10 flex items-center justify-center border border-white/10 text-white/40 hover:text-olive-400 hover:border-olive-400/50 transition-all"
+                                    className="w-10 h-10 flex items-center justify-center border border-white/10 text-white/70 hover:text-olive-400 hover:border-olive-400/50 transition-all"
                                     aria-label="YouTube"
                                 >
                                     <Youtube size={18} />
@@ -260,7 +260,7 @@ export default function Footer() {
                                     href="https://instagram.com"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-10 h-10 flex items-center justify-center border border-white/10 text-white/40 hover:text-olive-400 hover:border-olive-400/50 transition-all"
+                                    className="w-10 h-10 flex items-center justify-center border border-white/10 text-white/70 hover:text-olive-400 hover:border-olive-400/50 transition-all"
                                     aria-label="Instagram"
                                 >
                                     <Instagram size={18} />
