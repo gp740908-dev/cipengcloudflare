@@ -73,27 +73,22 @@ export default function TestimonialsClient({ testimonials }: TestimonialsClientP
     if (testimonials.length === 0) return null
 
     return (
-        <section ref={containerRef} className="py-32 md:py-40 bg-cream relative overflow-hidden">
-            {/* Parallax Background */}
+        <section ref={containerRef} className="py-32 bg-cream relative overflow-hidden">
+            {/* Simplified Background */}
             <motion.div
                 style={{ y: backgroundY }}
                 className="absolute inset-0 pointer-events-none"
             >
-                {/* Decorative Quote */}
+                {/* Single subtle decorative quote */}
                 <motion.div
                     style={{ rotate: quoteRotate }}
-                    className="absolute top-10 left-10 md:left-20 opacity-[0.03]"
+                    className="absolute top-10 left-10 md:left-20 opacity-[0.02]"
                 >
-                    <Quote size={500} strokeWidth={0.5} />
+                    <Quote size={400} strokeWidth={0.5} />
                 </motion.div>
 
-                {/* Decorative circles */}
-                <div className="absolute top-1/4 right-20 w-80 h-80 border border-olive-200/30 rounded-full" />
-                <div className="absolute bottom-20 left-1/4 w-64 h-64 border border-olive-200/20 rounded-full" />
-
-                {/* Gradient orbs */}
-                <div className="absolute top-20 right-0 w-96 h-96 bg-olive-100/30 rounded-full blur-3xl" />
-                <div className="absolute bottom-0 left-0 w-80 h-80 bg-olive-100/20 rounded-full blur-3xl" />
+                {/* Subtle top gradient only */}
+                <div className="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-b from-white/50 to-transparent" />
             </motion.div>
 
             <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12">

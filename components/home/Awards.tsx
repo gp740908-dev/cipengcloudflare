@@ -1,57 +1,39 @@
 'use client'
 
 import { useRef, useEffect, useState } from 'react'
-import { Award, Star, Trophy, Medal, Crown, Gem } from 'lucide-react'
+import { Award, Star, Trophy } from 'lucide-react'
 
+// Simplified to 4 awards for cleaner look
 const awards = [
     {
         icon: Trophy,
         year: '2024',
         title: 'Best Luxury Villa Provider',
         organization: 'Bali Tourism Awards',
-        badge: 'Gold Winner'
     },
     {
         icon: Award,
         year: '2024',
         title: 'Excellence in Hospitality',
         organization: 'Indonesia Travel Awards',
-        badge: 'Top Rated'
-    },
-    {
-        icon: Crown,
-        year: '2023',
-        title: "Traveler's Choice",
-        organization: 'TripAdvisor',
-        badge: 'Best of Best'
-    },
-    {
-        icon: Medal,
-        year: '2023',
-        title: 'Sustainable Tourism',
-        organization: 'Green Globe Certified',
-        badge: 'Eco-Certified'
     },
     {
         icon: Star,
         year: '2023',
-        title: 'Guest Review Score 9.5',
-        organization: 'Booking.com',
-        badge: 'Exceptional'
+        title: "Traveler's Choice",
+        organization: 'TripAdvisor',
     },
     {
-        icon: Gem,
-        year: '2022',
-        title: 'Hidden Gem Award',
-        organization: 'Condé Nast Traveller',
-        badge: 'Editor Pick'
+        icon: Award,
+        year: '2023',
+        title: 'Guest Review Score 9.5',
+        organization: 'Booking.com',
     },
 ]
 
 export default function Awards() {
     const containerRef = useRef<HTMLElement>(null)
     const [isInView, setIsInView] = useState(false)
-    const [parallaxOffset, setParallaxOffset] = useState(0)
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -66,130 +48,74 @@ export default function Awards() {
         return () => observer.disconnect()
     }, [])
 
-    // Parallax scroll effect
-    useEffect(() => {
-        const handleScroll = () => {
-            if (containerRef.current) {
-                const rect = containerRef.current.getBoundingClientRect()
-                const windowHeight = window.innerHeight
-                // Calculate parallax based on element position
-                if (rect.top < windowHeight && rect.bottom > 0) {
-                    const scrollProgress = (windowHeight - rect.top) / (windowHeight + rect.height)
-                    setParallaxOffset(scrollProgress * 100)
-                }
-            }
-        }
-        window.addEventListener('scroll', handleScroll, { passive: true })
-        handleScroll() // Initial calculation
-        return () => window.removeEventListener('scroll', handleScroll)
-    }, [])
-
     return (
-        <section ref={containerRef} className="relative py-24 md:py-32 bg-olive-900 overflow-hidden">
-            {/* Parallax Decorative Elements */}
+        <section ref={containerRef} className="relative py-32 bg-olive-900 overflow-hidden">
+            {/* Minimal decorative element - single subtle gradient */}
             <div className="absolute inset-0 pointer-events-none">
-                <div
-                    className="absolute top-0 left-1/4 w-96 h-96 bg-olive-800/30 rounded-full blur-3xl transition-transform duration-100"
-                    style={{ transform: `translateY(${parallaxOffset * 0.3}px)` }}
-                />
-                <div
-                    className="absolute bottom-0 right-1/4 w-80 h-80 bg-olive-700/20 rounded-full blur-3xl transition-transform duration-100"
-                    style={{ transform: `translateY(${-parallaxOffset * 0.2}px)` }}
-                />
-                {/* Additional floating elements */}
-                <div
-                    className="absolute top-1/3 right-10 w-4 h-4 bg-amber-400/20 rounded-full"
-                    style={{ transform: `translateY(${parallaxOffset * 0.5}px)` }}
-                />
-                <div
-                    className="absolute bottom-1/4 left-20 w-6 h-6 bg-amber-400/10 rounded-full"
-                    style={{ transform: `translateY(${-parallaxOffset * 0.4}px)` }}
-                />
+                <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-olive-800/20 to-transparent" />
             </div>
 
             {/* Gold Accent Line */}
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-400/50 to-transparent" />
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-400/40 to-transparent" />
 
             <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12">
-                {/* Header */}
-                <div className="text-center mb-16 md:mb-20">
-                    <div className={`inline-flex items-center gap-2 px-4 py-2 bg-amber-500/10 border border-amber-500/20 mb-6 ${isInView ? 'animate-fade-up' : 'opacity-0'}`}>
-                        <Trophy size={14} className="text-amber-400" />
-                        <span className="text-amber-400 text-xs tracking-[0.2em] uppercase">Recognition</span>
+                {/* Asymmetric Layout - 40/60 split */}
+                <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
+                    {/* Left Column - 40% */}
+                    <div className="lg:col-span-2">
+                        <p className={`text-amber-400 text-xs tracking-[0.3em] uppercase mb-4 ${isInView ? 'animate-fade-up' : 'opacity-0'}`}>
+                            Recognition
+                        </p>
+
+                        <h2 className={`font-display text-4xl md:text-5xl text-white mb-6 ${isInView ? 'animate-fade-up stagger-1' : 'opacity-0'}`}>
+                            Awards & <span className="italic text-amber-400">Accolades</span>
+                        </h2>
+
+                        <p className={`text-white/50 text-lg leading-relaxed mb-8 ${isInView ? 'animate-fade-up stagger-2' : 'opacity-0'}`}>
+                            Recognized by industry leaders for exceptional hospitality.
+                        </p>
+
+                        {/* Simple Stats - Cleaner */}
+                        <div className={`flex gap-8 ${isInView ? 'animate-fade-up stagger-3' : 'opacity-0'}`}>
+                            <div>
+                                <p className="font-display text-4xl text-amber-400">15+</p>
+                                <p className="text-white/40 text-xs tracking-wider uppercase mt-1">Awards</p>
+                            </div>
+                            <div>
+                                <p className="font-display text-4xl text-amber-400">9.5</p>
+                                <p className="text-white/40 text-xs tracking-wider uppercase mt-1">Rating</p>
+                            </div>
+                        </div>
                     </div>
 
-                    <h2 className={`font-display text-4xl md:text-5xl lg:text-6xl text-white mb-6 ${isInView ? 'animate-fade-up stagger-1' : 'opacity-0'}`}>
-                        Awards & <span className="italic text-amber-400">Accolades</span>
-                    </h2>
-
-                    <p className={`text-white/50 text-lg max-w-2xl mx-auto leading-relaxed ${isInView ? 'animate-fade-up stagger-2' : 'opacity-0'}`}>
-                        Recognized by industry leaders for our commitment to exceptional hospitality and unparalleled guest experiences.
-                    </p>
-                </div>
-
-                {/* Awards Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                    {awards.map((award, index) => {
-                        const staggerClass = `stagger-${Math.min(index + 1, 6)}`
-                        return (
-                            <div
-                                key={index}
-                                className={`group relative p-8 bg-white/5 backdrop-blur-sm border border-white/10 hover:border-amber-400/30 hover:bg-white/10 transition-all duration-500 ${isInView ? `animate-fade-up ${staggerClass}` : 'opacity-0'}`}
-                            >
-                                {/* Year Badge */}
-                                <span className="absolute top-4 right-4 text-xs text-white/30 font-medium">
-                                    {award.year}
-                                </span>
-
-                                {/* Icon */}
-                                <div className="w-12 h-12 flex items-center justify-center bg-amber-400/10 text-amber-400 mb-5 group-hover:bg-amber-400 group-hover:text-olive-900 transition-all duration-300">
-                                    <award.icon size={22} />
-                                </div>
-
-                                {/* Content */}
-                                <h3 className="font-display text-lg text-white mb-2 group-hover:text-amber-400 transition-colors">
-                                    {award.title}
-                                </h3>
-                                <p className="text-white/40 text-sm mb-4">
-                                    {award.organization}
-                                </p>
-
-                                {/* Badge */}
-                                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-amber-400/10 border border-amber-400/20">
-                                    <Star size={10} className="text-amber-400 fill-amber-400" />
-                                    <span className="text-amber-400 text-[10px] tracking-[0.15em] uppercase font-medium">
-                                        {award.badge}
-                                    </span>
-                                </div>
-
-                                {/* Hover Glow */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-amber-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-                            </div>
-                        )
-                    })}
-                </div>
-
-                {/* Trust Indicators */}
-                <div className={`mt-16 pt-12 border-t border-white/10 ${isInView ? 'animate-fade-up stagger-6' : 'opacity-0'}`}>
-                    <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-                        <div className="text-center">
-                            <p className="font-display text-3xl md:text-4xl text-amber-400">15+</p>
-                            <p className="text-white/40 text-xs tracking-wider uppercase mt-1">Industry Awards</p>
-                        </div>
-                        <div className="w-px h-12 bg-white/10 hidden md:block" />
-                        <div className="text-center">
-                            <p className="font-display text-3xl md:text-4xl text-amber-400">9.5</p>
-                            <p className="text-white/40 text-xs tracking-wider uppercase mt-1">Average Rating</p>
-                        </div>
-                        <div className="w-px h-12 bg-white/10 hidden md:block" />
-                        <div className="text-center">
-                            <p className="font-display text-3xl md:text-4xl text-amber-400">5000+</p>
-                            <p className="text-white/40 text-xs tracking-wider uppercase mt-1">5-Star Reviews</p>
-                        </div>
-                        <div className="w-px h-12 bg-white/10 hidden md:block" />
-                        <div className="text-center">
-                            <p className="font-display text-3xl md:text-4xl text-amber-400">100%</p>
-                            <p className="text-white/40 text-xs tracking-wider uppercase mt-1">Satisfaction</p>
+                    {/* Right Column - 60% */}
+                    <div className="lg:col-span-3">
+                        <div className="grid sm:grid-cols-2 gap-4">
+                            {awards.map((award, index) => {
+                                const staggerClass = `stagger-${Math.min(index + 1, 4)}`
+                                return (
+                                    <div
+                                        key={index}
+                                        className={`group p-6 bg-white/5 border border-white/10 hover:border-amber-400/30 transition-all duration-300 ${isInView ? `animate-fade-up ${staggerClass}` : 'opacity-0'}`}
+                                    >
+                                        {/* Simple layout - icon + content */}
+                                        <div className="flex items-start gap-4">
+                                            <div className="w-10 h-10 flex items-center justify-center bg-amber-400/10 text-amber-400 shrink-0">
+                                                <award.icon size={18} />
+                                            </div>
+                                            <div>
+                                                <span className="text-white/30 text-xs">{award.year}</span>
+                                                <h3 className="font-display text-white text-lg mt-1 group-hover:text-amber-400 transition-colors">
+                                                    {award.title}
+                                                </h3>
+                                                <p className="text-white/40 text-sm mt-1">
+                                                    {award.organization}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })}
                         </div>
                     </div>
                 </div>

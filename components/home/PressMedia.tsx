@@ -44,7 +44,7 @@ export default function PressMedia() {
     }, [])
 
     return (
-        <section ref={containerRef} className="relative py-20 md:py-28 bg-cream overflow-hidden">
+        <section ref={containerRef} className="relative py-32 bg-cream overflow-hidden">
             {/* Subtle Pattern */}
             <div className="absolute inset-0 opacity-30 pointer-events-none">
                 <div className="absolute top-0 left-0 w-full h-full"

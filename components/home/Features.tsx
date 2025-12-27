@@ -80,12 +80,10 @@ export default function Features() {
     }, [])
 
     return (
-        <section ref={containerRef} className="relative py-32 md:py-40 bg-white overflow-hidden">
-            {/* Background Pattern */}
+        <section ref={containerRef} className="relative py-32 bg-white overflow-hidden">
+            {/* Simplified Background - single subtle gradient */}
             <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-20 left-10 w-72 h-72 bg-olive-100/30 rounded-full blur-3xl" />
-                <div className="absolute bottom-20 right-10 w-96 h-96 bg-olive-100/40 rounded-full blur-3xl" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-olive-50/30 rounded-full blur-3xl" />
+                <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-gray-50 to-transparent" />
             </div>
 
             <div className="relative z-10">

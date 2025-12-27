@@ -43,7 +43,7 @@ export default function ExperienceClient({ experiences }: ExperienceClientProps)
 
     return (
         <section ref={containerRef} className="relative min-h-screen bg-olive-900 overflow-hidden">
-            {/* Enhanced Parallax Background */}
+            {/* Simplified Parallax Background */}
             <motion.div
                 style={{ y: backgroundY }}
                 className="absolute inset-0 pointer-events-none"
@@ -52,50 +52,20 @@ export default function ExperienceClient({ experiences }: ExperienceClientProps)
                 <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-black/20 to-transparent" />
             </motion.div>
 
-            {/* Floating Parallax Elements - Different Speeds for Depth */}
+            {/* Minimal Parallax Elements - reduced for cleaner look */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                {/* Large circle - slow movement */}
+                {/* Single decorative circle */}
                 <motion.div
                     style={{ y: floatY1 }}
-                    className="absolute top-20 left-20 w-64 h-64 border border-olive-700/20 rounded-full hidden lg:block"
-                />
-
-                {/* Medium circle - medium movement */}
-                <motion.div
-                    style={{ y: floatY2, x: floatX1 }}
-                    className="absolute bottom-20 left-40 w-32 h-32 border border-olive-600/20 rounded-full hidden lg:block"
-                />
-
-                {/* Small glowing dots - fast movement */}
-                <motion.div
-                    style={{ y: floatY3, x: floatX2 }}
-                    className="absolute top-1/3 left-10 w-3 h-3 bg-olive-400/20 rounded-full blur-sm hidden lg:block"
-                />
-                <motion.div
-                    style={{ y: floatY2 }}
-                    className="absolute top-1/4 right-1/3 w-2 h-2 bg-olive-300/30 rounded-full hidden lg:block"
-                />
-                <motion.div
-                    style={{ y: floatY1, x: floatX1 }}
-                    className="absolute bottom-1/3 left-1/4 w-4 h-4 bg-olive-500/10 rounded-full blur-md hidden lg:block"
-                />
-
-                {/* Gradient orbs with deep parallax */}
-                <motion.div
-                    style={{ y: floatY2, scale: scaleProgress }}
-                    className="absolute -top-20 -right-20 w-96 h-96 bg-olive-700/10 rounded-full blur-3xl"
-                />
-                <motion.div
-                    style={{ y: floatY3 }}
-                    className="absolute -bottom-40 -left-20 w-80 h-80 bg-olive-600/10 rounded-full blur-3xl"
+                    className="absolute top-20 left-20 w-48 h-48 border border-olive-700/10 rounded-full hidden lg:block"
                 />
             </div>
 
-            {/* Split Screen Layout */}
+            {/* Split Screen Layout - 40/60 */}
             <div className="relative z-10 min-h-screen flex flex-col lg:flex-row">
-                {/* Left Side - Content */}
-                <div className="w-full lg:w-1/2 flex flex-col justify-center px-6 md:px-12 lg:px-16 py-20 lg:py-0">
-                    <div className="max-w-xl mx-auto lg:mx-0 lg:ml-auto lg:mr-16">
+                {/* Left Side - Content - 40% */}
+                <div className="w-full lg:w-2/5 flex flex-col justify-center px-6 md:px-12 lg:px-16 py-20 lg:py-0">
+                    <div className="max-w-md mx-auto lg:mx-0 lg:ml-auto lg:mr-12">
                         {/* Header */}
                         <motion.div
                             initial={{ opacity: 0, x: -30 }}
@@ -176,8 +146,8 @@ export default function ExperienceClient({ experiences }: ExperienceClientProps)
                     </div>
                 </div>
 
-                {/* Right Side - Image with Parallax */}
-                <div className="w-full lg:w-1/2 relative min-h-[60vh] lg:min-h-screen">
+                {/* Right Side - Image - 60% */}
+                <div className="w-full lg:w-3/5 relative min-h-[60vh] lg:min-h-screen">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={activeExperience?.id}

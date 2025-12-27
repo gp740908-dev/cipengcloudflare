@@ -122,6 +122,9 @@ export default function HeroClient({ villas }: HeroClientProps) {
                                 priority
                                 className="object-cover"
                                 sizes="100vw"
+                                quality={70}
+                                placeholder="blur"
+                                blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNGE1ZDIzIi8+PC9zdmc+"
                             />
                         </motion.div>
                     </motion.div>
@@ -365,11 +368,11 @@ export default function HeroClient({ villas }: HeroClientProps) {
                         key={villa.id}
                         onClick={() => goTo(index)}
                         className={`relative overflow-hidden transition-all duration-300 ${index === current
-                                ? 'w-16 h-16 ring-2 ring-olive-400'
-                                : 'w-12 h-12 opacity-50 hover:opacity-100'
+                            ? 'w-16 h-16 ring-2 ring-olive-400'
+                            : 'w-12 h-12 opacity-50 hover:opacity-100'
                             }`}
                     >
-                        <Image src={villa.image} alt={villa.name} fill className="object-cover" sizes="64px" />
+                        <Image src={villa.image} alt={villa.name} fill className="object-cover" sizes="64px" quality={60} loading="lazy" />
                     </button>
                 ))}
             </motion.div>
