@@ -19,9 +19,13 @@ interface FeaturedVilla {
 
 interface HeroClientProps {
     villas: FeaturedVilla[]
+    blurDataURL?: string
 }
 
-export default function HeroClient({ villas }: HeroClientProps) {
+// Default olive colored blur placeholder
+const defaultBlurDataURL = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI4MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzRhNWQyMyIvPjwvc3ZnPg=='
+
+export default function HeroClient({ villas, blurDataURL = defaultBlurDataURL }: HeroClientProps) {
     const [current, setCurrent] = useState(0)
     const [isPlaying, setIsPlaying] = useState(true)
     const [checkIn, setCheckIn] = useState('')
@@ -124,7 +128,7 @@ export default function HeroClient({ villas }: HeroClientProps) {
                                 sizes="100vw"
                                 quality={70}
                                 placeholder="blur"
-                                blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNGE1ZDIzIi8+PC9zdmc+"
+                                blurDataURL={blurDataURL}
                             />
                         </motion.div>
                     </motion.div>

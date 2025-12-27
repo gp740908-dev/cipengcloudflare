@@ -87,8 +87,14 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
+        {/* Preconnect to image CDNs for faster loading */}
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="preconnect" href="https://lkeyumclbqzpuaaovamu.supabase.co" />
+
         {/* DNS Prefetch for better performance */}
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        <link rel="dns-prefetch" href="https://lkeyumclbqzpuaaovamu.supabase.co" />
       </head>
       <body className="antialiased bg-cream text-primary">
         <Providers>

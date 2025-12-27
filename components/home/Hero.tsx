@@ -1,6 +1,9 @@
 import { createClient } from '@/lib/supabase/server'
 import HeroClient from './HeroClient'
 
+// Hero image blur placeholder for instant display
+const heroBlurDataURL = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI4MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzRhNWQyMyIvPjwvc3ZnPg=='
+
 export default async function Hero() {
     const supabase = await createClient()
 
@@ -97,5 +100,22 @@ export default async function Hero() {
 
     const villasToShow = featuredVillas.length > 0 ? featuredVillas : fallbackVillas
 
-    return <HeroClient villas={villasToShow} />
+    // Extract first image for preloading
+    const firstImage = villasToShow[0]?.image
+
+    return (
+        <>
+            {/* Preload first hero image for instant display */}
+            {firstImage && (
+                <link
+                    rel="preload"
+                    as="image"
+                    href={firstImage}
+                    // @ts-ignore - fetchpriority is valid HTML attribute
+                    fetchpriority="high"
+                />
+            )}
+            <HeroClient villas={villasToShow} blurDataURL={heroBlurDataURL} />
+        </>
+    )
 }

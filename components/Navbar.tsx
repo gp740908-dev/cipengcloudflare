@@ -91,7 +91,7 @@ export default function Navbar() {
                     willChange: 'transform',
                     backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.95)' : 'transparent'
                 }}
-                className={`z-[9999] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]
+                className={`z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]
                     ${isScrolled
                         ? 'backdrop-blur-md py-3 border-b border-gray-100 shadow-sm'
                         : 'py-4'
