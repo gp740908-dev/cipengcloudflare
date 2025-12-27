@@ -106,9 +106,9 @@ export default function Navbar() {
                 <div className="max-w-[1400px] mx-auto px-6 md:px-12">
                     <div className="flex items-center justify-between">
                         {/* Logo */}
-                        <Link href="/" className="relative z-10 h-20 md:h-24 flex items-center">
+                        <Link href="/" className="relative z-10 h-20 md:h-24 flex items-center group">
                             {/* Container with fixed height for smooth transition */}
-                            <div className="relative w-48 md:w-56 h-full flex items-center">
+                            <div className="relative w-48 md:w-56 h-full flex items-center transition-transform duration-300 ease-out group-hover:scale-105">
                                 {/* Image Logo - Always rendered, opacity controlled */}
                                 <motion.div
                                     animate={{
@@ -127,7 +127,7 @@ export default function Navbar() {
                                         alt="StayinUBUD"
                                         width={200}
                                         height={110}
-                                        className="h-20 md:h-24 w-auto object-contain"
+                                        className="h-20 md:h-24 w-auto object-contain transition-all duration-300 group-hover:brightness-110"
                                         priority
                                         quality={85}
                                     />
@@ -143,10 +143,10 @@ export default function Navbar() {
                                         duration: 0.4,
                                         ease: [0.16, 1, 0.3, 1]
                                     }}
-                                    className="font-display text-2xl md:text-3xl tracking-tight text-gray-900 whitespace-nowrap"
+                                    className="font-display text-2xl md:text-3xl tracking-tight text-gray-900 whitespace-nowrap transition-colors duration-300 group-hover:text-olive-700"
                                     style={{ pointerEvents: isTransparent ? 'none' : 'auto' }}
                                 >
-                                    Stayin<span className="text-olive-600">UBUD</span>
+                                    Stayin<span className="text-olive-600 group-hover:text-olive-500 transition-colors duration-300">UBUD</span>
                                 </motion.span>
                             </div>
                         </Link>

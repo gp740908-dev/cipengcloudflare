@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { Lock, Mail, Loader2, AlertCircle, CheckCircle, Leaf } from 'lucide-react'
+import { Lock, Mail, Loader2, AlertCircle, CheckCircle } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -105,9 +105,6 @@ export default function AdminLoginPage() {
                 <div className="relative z-10 flex flex-col justify-between p-12 w-full">
                     <div>
                         <Link href="/" className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-olive-600 flex items-center justify-center">
-                                <Leaf size={20} className="text-white" />
-                            </div>
                             <span className="font-display text-2xl text-white">StayinUBUD</span>
                         </Link>
                     </div>
@@ -136,9 +133,6 @@ export default function AdminLoginPage() {
                     {/* Mobile Logo */}
                     <div className="text-center mb-8 lg:hidden">
                         <Link href="/" className="inline-flex items-center gap-2">
-                            <div className="w-10 h-10 bg-olive-900 flex items-center justify-center">
-                                <Leaf size={20} className="text-white" />
-                            </div>
                             <span className="font-display text-2xl text-gray-900">StayinUBUD</span>
                         </Link>
                     </div>

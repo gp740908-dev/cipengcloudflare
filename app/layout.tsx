@@ -5,6 +5,7 @@ import AnalyticsTracker from "@/components/AnalyticsTracker";
 import Providers from "@/components/Providers";
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 import LuxuryLoader from "@/components/LuxuryLoader";
+import CookieConsent from "@/components/CookieConsent";
 import { createMetadata, getOrganizationSchema, getLocalBusinessSchema } from '@/lib/seo'
 
 // Optimized font loading with next/font
@@ -101,6 +102,7 @@ export default function RootLayout({
           <LuxuryLoader />
           <ServiceWorkerRegister />
           <AnalyticsTracker />
+          <CookieConsent />
           {children}
         </Providers>
       </body>
