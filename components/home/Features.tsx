@@ -56,10 +56,10 @@ const features = [
 ]
 
 const stats = [
-    { value: '5000+', label: 'Happy Guests' },
+    { value: '500+', label: 'Happy Guests' },
     { value: '4.9', label: 'Average Rating' },
-    { value: '50+', label: 'Luxury Villas' },
-    { value: '10+', label: 'Years Experience' },
+    { value: '3+', label: 'Luxury Villas' },
+    { value: '2+', label: 'Years Experience' },
 ]
 
 export default function Features() {

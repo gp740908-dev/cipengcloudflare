@@ -6,8 +6,8 @@ import { ArrowRight, Star, Phone, Mail, MapPin } from 'lucide-react'
 import OptimizedImage from '@/components/OptimizedImage'
 
 const stats = [
-    { value: 50, suffix: '+', label: 'Curated Luxury Villas', desc: 'Hand-picked for excellence' },
-    { value: 5000, suffix: '+', label: 'Happy Guests', desc: 'From around the world' },
+    { value: 3, suffix: '+', label: 'Curated Luxury Villas', desc: 'Hand-picked for excellence' },
+    { value: 500, suffix: '+', label: 'Happy Guests', desc: 'From around the world' },
     { value: 24, suffix: '/7', label: 'Concierge Service', desc: 'Always here for you' },
     { value: 100, suffix: '%', label: 'Satisfaction Rate', desc: 'Guaranteed experiences' },
 ]

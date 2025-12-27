@@ -15,7 +15,7 @@ export async function middleware(request: NextRequest) {
                     return request.cookies.getAll()
                 },
                 setAll(cookiesToSet) {
-                    cookiesToSet.forEach(({ name, value, options }) => request.cookies.set(name, value))
+                    cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value))
                     supabaseResponse = NextResponse.next({
                         request,
                     })
@@ -34,43 +34,15 @@ export async function middleware(request: NextRequest) {
     if (isAdminRoute && !isLoginPage) {
         const { data: { session } } = await supabase.auth.getSession()
 
-        // No session - redirect to login
+        // No session - redirect to login immediately
         if (!session) {
             const loginUrl = new URL('/admin/login', request.url)
             loginUrl.searchParams.set('redirectTo', request.nextUrl.pathname)
             return NextResponse.redirect(loginUrl)
         }
 
-        // Check if user is admin
-        const { data: adminUser } = await supabase
-            .from('admin_users')
-            .select('id')
-            .eq('email', session.user.email)
-            .single()
-
-        if (!adminUser) {
-            // Not an admin - redirect to login with error
-            const loginUrl = new URL('/admin/login', request.url)
-            loginUrl.searchParams.set('error', 'not_admin')
-            return NextResponse.redirect(loginUrl)
-        }
-    }
-
-    // If on login page and already authenticated as admin, redirect to dashboard
-    if (isLoginPage) {
-        const { data: { session } } = await supabase.auth.getSession()
-
-        if (session) {
-            const { data: adminUser } = await supabase
-                .from('admin_users')
-                .select('id')
-                .eq('email', session.user.email)
-                .single()
-
-            if (adminUser) {
-                return NextResponse.redirect(new URL('/admin/dashboard', request.url))
-            }
-        }
+        // Session exists - let the page handle admin verification
+        // This avoids RLS issues in middleware
     }
 
     return supabaseResponse

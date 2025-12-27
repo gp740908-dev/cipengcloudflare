@@ -68,9 +68,9 @@ export default function AboutContent() {
     ]
 
     const stats = [
-        { value: '50+', label: 'Luxury Villas', description: 'Carefully curated properties' },
-        { value: '5000+', label: 'Happy Guests', description: 'From around the world' },
-        { value: '10+', label: 'Years Experience', description: 'In luxury hospitality' },
+        { value: '3+', label: 'Luxury Villas', description: 'Carefully curated properties' },
+        { value: '500+', label: 'Happy Guests', description: 'From around the world' },
+        { value: '2+', label: 'Years Experience', description: 'In luxury hospitality' },
         { value: '4.9', label: 'Average Rating', description: 'Guest satisfaction score' },
     ]
 
